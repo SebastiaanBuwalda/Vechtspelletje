@@ -10,21 +10,21 @@ public class WalkForwardState : State1 {
 
     public override void Enter()
     {
-        base.Enter();
+        Debug.Log("Walk forwards state");
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
     }
 }

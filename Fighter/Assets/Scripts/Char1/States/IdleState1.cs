@@ -10,21 +10,30 @@ public class IdleState1 : State1 {
 
     public override void Enter()
     {
-        base.Enter();
+        Debug.Log("Entered Idle State");
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            //walk left
+            GetComponent<StateMachine1>().SetState(StateID.WalkBackward);
+        }
+        else if(Input.GetKey(KeyCode.RightArrow))
+        {
+            //walk right
+            GetComponent<StateMachine1>().SetState(StateID.WalkForward);
+        }
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
     }
 }

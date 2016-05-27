@@ -10,21 +10,21 @@ public class WalkBackwardState : State1 {
 
     public override void Enter()
     {
-        base.Enter();
+        Debug.Log("Walk backwards state");
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+        transform.Translate(new Vector3(-5, 0, 0));
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
     }
 }
