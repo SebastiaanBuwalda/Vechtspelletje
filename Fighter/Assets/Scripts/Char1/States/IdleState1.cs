@@ -10,11 +10,12 @@ public class IdleState1 : State1 {
 
     public override void Enter()
     {
-        Debug.Log("Entered Idle State");
+        
     }
 
     public override void Act()
     {
+        Debug.Log("Act function");
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             //walk left
@@ -29,7 +30,7 @@ public class IdleState1 : State1 {
 
     public override void Reason()
     {
-        
+        Debug.Log("Reason function");
     }
 
     public override void Leave()
