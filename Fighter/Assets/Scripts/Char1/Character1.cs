@@ -28,7 +28,9 @@ public enum StateID
     Idle = 21,
     Getup = 22,
     LightSpecial = 23,
-    HeavySpecial = 24
+    HeavySpecial = 24,
+    JumpForward = 25,
+    JumpBackward = 26
 }
 
 public class Character1 : MonoBehaviour {
@@ -51,6 +53,8 @@ public class Character1 : MonoBehaviour {
         stateMachine.AddState(StateID.WalkForward, GetComponent<WalkForwardState>());
         stateMachine.AddState(StateID.WalkBackward, GetComponent<WalkBackwardState>());
         stateMachine.AddState(StateID.Jump, GetComponent<JumpState>());
+        stateMachine.AddState(StateID.JumpForward, GetComponent<JumpForwardState>());
+        stateMachine.AddState(StateID.JumpBackward, GetComponent<JumpBackwardState>());
         stateMachine.AddState(StateID.StandParry, GetComponent<ParryStandingState>());
         stateMachine.AddState(StateID.StandBlock, GetComponent<BlockStandingState1>());
         stateMachine.AddState(StateID.CrouchParry, GetComponent<ParryCrouchState>());

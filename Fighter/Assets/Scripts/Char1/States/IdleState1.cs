@@ -8,9 +8,12 @@ using System.Collections;
 
 public class IdleState1 : State1 {
 
+    [SerializeField] private StateMachine1 stateMachine;
+    [SerializeField] private Animator anim;
+
     public override void Enter()
     {
-        
+        anim.SetInteger("AnimState", 0);
     }
 
     public override void Act()
@@ -19,12 +22,17 @@ public class IdleState1 : State1 {
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             //walk left
-            GetComponent<StateMachine1>().SetState(StateID.WalkBackward);
+            stateMachine.SetState(StateID.WalkBackward);
         }
         else if(Input.GetKey(KeyCode.RightArrow))
         {
             //walk right
-            GetComponent<StateMachine1>().SetState(StateID.WalkForward);
+            stateMachine.SetState(StateID.WalkForward);
+        }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            stateMachine.SetState(StateID.Jump);
         }
     }
 

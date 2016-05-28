@@ -2,17 +2,18 @@
 using System.Collections;
 
 /*
- * this class represents the jump.
- * this state is entered while the jump button is pressed while in the idle or crouch state
- * from this state the character can enter the aerial versions of the light and heavy attacks as well as the falling state upon getting hit, 
- * and the idle state upon hitting the ground without using a move.
+ * this class represents the jump forward state.
+ * it is the same as the regular jump state exept that you jump backward instead of straight up.
  */
 
-public class JumpState : State1 {
+public class JumpBackwardState : State1 {
 
-    [SerializeField] private StateMachine1 stateMachine;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private Vector3 jumpVector;
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    [SerializeField]
+    private Rigidbody rb;
+    [SerializeField]
+    private Vector3 jumpVector;
 
     void Start()
     {
@@ -25,15 +26,15 @@ public class JumpState : State1 {
         Debug.Log("Enter Jump State");
         rb.AddForce(jumpVector, ForceMode.Impulse);
     }
-    
+
     public override void Act()
     {
-        
+
     }
 
     public override void Reason()
     {
-        
+
     }
 
     public override void Leave()
@@ -43,7 +44,7 @@ public class JumpState : State1 {
 
     void OnCollisionEnter(Collision coll)
     {
-        if(coll.gameObject.tag == "Floor")
+        if (coll.gameObject.tag == "Floor")
         {
             stateMachine.SetState(StateID.Idle);
         }

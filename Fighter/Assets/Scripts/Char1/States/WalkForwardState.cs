@@ -8,22 +8,25 @@ using System.Collections;
 
 public class WalkForwardState : State1 {
 
-    private StateMachine1 stateMachine;
+    [SerializeField] private StateMachine1 stateMachine;
+    [SerializeField] private Animator anim;
+    [SerializeField] private Vector3 moveVector;
 
     void Start()
     {
-        stateMachine = GetComponent<StateMachine1>();
+        //stateMachine = GetComponent<StateMachine1>();
     }
 
     public override void Enter()
     {
         //Debug.Log("Walk forwards state");
+        anim.SetInteger("AnimState", 2);
     }
 
     public override void Act()
     {
-        
-        transform.Translate(new Vector3(2, 0, 0) * Time.deltaTime);
+        transform.Translate(moveVector * Time.deltaTime);
+        //transform.Translate(new Vector3(2, 0, 0) * Time.deltaTime);
     }
 
     public override void Reason()
@@ -36,6 +39,11 @@ public class WalkForwardState : State1 {
         else if (!Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
             stateMachine.SetState(StateID.WalkBackward);
+        }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            stateMachine.SetState(StateID.JumpForward);
         }
     }
 
