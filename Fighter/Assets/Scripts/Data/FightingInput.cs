@@ -17,6 +17,7 @@ public class FightingInput
 		{
 			if (currentIndex < buttons.Length)
 			{
+				//Make sure that no other buttons are pressed
 				if ((buttons[currentIndex] == "down" && Input.GetAxisRaw("Vertical") == -1) ||
 					(buttons[currentIndex] == "up" && Input.GetAxisRaw("Vertical") == 1) ||
 					(buttons[currentIndex] == "left" && Input.GetAxisRaw("Vertical") == -1) ||
