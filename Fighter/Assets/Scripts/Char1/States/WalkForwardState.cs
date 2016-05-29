@@ -14,7 +14,6 @@ public class WalkForwardState : State1 {
 
     public override void Enter()
     {
-        //Debug.Log("Walk forwards state");
         anim.SetInteger("AnimState", 2);
     }
 
@@ -26,7 +25,7 @@ public class WalkForwardState : State1 {
 
     public override void Reason()
     {
-        
+        anim.SetInteger("AnimState", 2);
         if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             stateMachine.SetState(StateID.Idle);

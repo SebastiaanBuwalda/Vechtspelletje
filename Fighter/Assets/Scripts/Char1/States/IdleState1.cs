@@ -13,8 +13,8 @@ public class IdleState1 : State1 {
 
     public override void Enter()
     {
+        ReadInputs();
         anim.SetInteger("AnimState", 0);
-        Debug.Log("Idle Enter");
     }
 
     public override void Act()
@@ -23,6 +23,17 @@ public class IdleState1 : State1 {
     }
 
     public override void Reason()
+    {
+        anim.SetInteger("AnimState", 0);
+        ReadInputs();
+    }
+
+    public override void Leave()
+    {
+        
+    }
+
+    void ReadInputs()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -48,10 +59,5 @@ public class IdleState1 : State1 {
         {
             stateMachine.SetState(StateID.Jump);
         }
-    }
-
-    public override void Leave()
-    {
-        
     }
 }

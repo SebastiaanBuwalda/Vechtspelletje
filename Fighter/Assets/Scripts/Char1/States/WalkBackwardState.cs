@@ -26,6 +26,7 @@ public class WalkBackwardState : State1 {
 
     public override void Reason()
     {
+        anim.SetInteger("AnimState", 1);
         if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             stateMachine.SetState(StateID.Idle);

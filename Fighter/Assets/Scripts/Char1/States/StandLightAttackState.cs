@@ -15,23 +15,24 @@ public class StandLightAttackState : State1 {
     [SerializeField]
     private float lockTime;
 
+    [SerializeField]
+    private GameObject hitBox;
+
 
     public override void Enter()
     {
-        print("standing light attack enter");
         anim.SetInteger("AnimState", 3);
     }
 
     public override void Act()
     {
-        
+        anim.SetInteger("AnimState", 3);
     }
 
     public override void Reason()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
         {
-            Debug.Log("LIGHT ATTACK FINISGED");
             StartCoroutine(LightAtkLockTime());
         }
     }
@@ -39,6 +40,18 @@ public class StandLightAttackState : State1 {
     public override void Leave()
     {
         
+    }
+
+    void ActivateLightHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(true);
+    }
+
+    void DeactivateLightHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(false);
     }
 
     //time untill player can move again

@@ -22,6 +22,8 @@ public class StateMachine1 : MonoBehaviour {
 			currentState.Reason();
 			currentState.Act();
 		}
+
+        Debug.Log(currentState);
 		
 	}
 

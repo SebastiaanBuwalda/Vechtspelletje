@@ -23,7 +23,6 @@ public class JumpBackwardState : State1 {
 
     public override void Enter()
     {
-        Debug.Log("Enter Jump State");
         rb.AddForce(jumpVector, ForceMode.Impulse);
     }
 

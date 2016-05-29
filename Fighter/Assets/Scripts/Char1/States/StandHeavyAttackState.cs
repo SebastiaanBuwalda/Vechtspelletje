@@ -14,25 +14,64 @@ public class StandHeavyAttackState : State1 {
     private Animator anim;
     [SerializeField]
     private float lockTime;
+    [SerializeField]
+    private Vector3 moveVector;
+    [SerializeField]
+    private GameObject hitBox;
+
+    private bool shouldMove;
 
 
     public override void Enter()
     {
-        print("standing heavy attack enter");
         anim.SetInteger("AnimState", 4);
+        shouldMove = true;
     }
 
     public override void Act()
     {
+        anim.SetInteger("AnimState", 4);
+        MoveForward();
         
     }
 
     public override void Reason()
     {
+        
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("H Punch"))
         {
             StartCoroutine(HeavyAtkLockTime());
         }
+
+        /*
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+        {
+            StartCoroutine(HeavyAtkLockTime());
+        }
+         */
+    }
+
+    void MoveForward()
+    {
+        if(shouldMove)
+            transform.Translate(moveVector * Time.deltaTime);
+    }
+
+    void StopMoveing()
+    {
+        shouldMove = false;
+    }
+
+    void ActivateHeavyHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(true);
+    }
+
+    void DeactivateHeavyHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(false);
     }
 
     public override void Leave()
