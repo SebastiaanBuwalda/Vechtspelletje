@@ -75,7 +75,10 @@ public class Character1 : MonoBehaviour {
         stateMachine.AddState(StateID.HeavySpecial, GetComponent<HeavySpecialState>());
         stateMachine.AddState(StateID.Getup, GetComponent<GetupState>());
         stateMachine.AddState(StateID.LayingDown, GetComponent<LayingState>());
+    }
 
-        Debug.Log("Made States, got components");
+    void Update()
+    {
+        //Debug.Log(StateID);
     }
 }

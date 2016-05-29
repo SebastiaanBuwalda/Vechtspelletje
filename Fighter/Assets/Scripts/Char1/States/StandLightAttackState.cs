@@ -8,23 +8,43 @@ using System.Collections;
 
 public class StandLightAttackState : State1 {
 
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private float lockTime;
+
+
     public override void Enter()
     {
-        base.Enter();
+        print("standing light attack enter");
+        anim.SetInteger("AnimState", 3);
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
+        {
+            Debug.Log("LIGHT ATTACK FINISGED");
+            StartCoroutine(LightAtkLockTime());
+        }
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
+    }
+
+    //time untill player can move again
+    IEnumerator LightAtkLockTime()
+    {
+        yield return new WaitForSeconds(lockTime);
+        stateMachine.SetState(StateID.Idle);
     }
 }

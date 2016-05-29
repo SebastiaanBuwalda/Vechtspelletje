@@ -12,11 +12,6 @@ public class WalkForwardState : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Vector3 moveVector;
 
-    void Start()
-    {
-        //stateMachine = GetComponent<StateMachine1>();
-    }
-
     public override void Enter()
     {
         //Debug.Log("Walk forwards state");
@@ -39,6 +34,15 @@ public class WalkForwardState : State1 {
         else if (!Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
             stateMachine.SetState(StateID.WalkBackward);
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            stateMachine.SetState(StateID.StandLightAttack);
+        }
+        if (Input.GetKey(KeyCode.X))
+        {
+            stateMachine.SetState(StateID.StandHeavyAttack);
         }
 
         if(Input.GetKey(KeyCode.Space))

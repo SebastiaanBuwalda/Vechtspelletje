@@ -14,31 +14,40 @@ public class IdleState1 : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 0);
+        Debug.Log("Idle Enter");
     }
 
     public override void Act()
     {
-        Debug.Log("Act function");
-        if(Input.GetKey(KeyCode.LeftArrow))
+        
+    }
+
+    public override void Reason()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             //walk left
             stateMachine.SetState(StateID.WalkBackward);
         }
-        else if(Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             //walk right
             stateMachine.SetState(StateID.WalkForward);
         }
 
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Z))
+        {
+            stateMachine.SetState(StateID.StandLightAttack);
+        }
+        if (Input.GetKey(KeyCode.X))
+        {
+            stateMachine.SetState(StateID.StandHeavyAttack);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
         {
             stateMachine.SetState(StateID.Jump);
         }
-    }
-
-    public override void Reason()
-    {
-        Debug.Log("Reason function");
     }
 
     public override void Leave()
