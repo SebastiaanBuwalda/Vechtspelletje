@@ -78,6 +78,15 @@ public class StandHeavyAttackState : State1 {
     IEnumerator HeavyAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-        stateMachine.SetState(StateID.Idle);
+        if(!Input.anyKey)
+            stateMachine.SetState(StateID.Idle);
+        else if(Input.GetKey(KeyCode.RightArrow))
+        {
+            stateMachine.SetState(StateID.WalkForward);
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            stateMachine.SetState(StateID.WalkBackward);
+        }
     }
 }

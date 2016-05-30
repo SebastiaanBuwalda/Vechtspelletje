@@ -63,6 +63,15 @@ public class StandLightAttackState : State1 {
     IEnumerator LightAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-        stateMachine.SetState(StateID.Idle);
+        if(!Input.anyKey)
+            stateMachine.SetState(StateID.Idle);
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            stateMachine.SetState(StateID.WalkBackward);
+        }
+        else if(Input.GetKey(KeyCode.RightArrow))
+        {
+            stateMachine.SetState(StateID.WalkForward);
+        }
     }
 }

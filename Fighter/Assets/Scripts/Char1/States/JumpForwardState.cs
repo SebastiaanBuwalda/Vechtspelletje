@@ -15,11 +15,6 @@ public class JumpForwardState : State1 {
     [SerializeField]
     private Vector3 jumpVector;
 
-    void Start()
-    {
-        Physics.gravity = new Vector3(0, -25, 0);
-    }
-
     public override void Enter()
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
@@ -27,17 +22,21 @@ public class JumpForwardState : State1 {
 
     public override void Act()
     {
-
+        Debug.Log(rb.velocity);
     }
 
     public override void Reason()
     {
-
+        //clamp max jump velocity
+        if (rb.velocity.y > 12.7f)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.z);
+        }
     }
 
     public override void Leave()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision coll)
