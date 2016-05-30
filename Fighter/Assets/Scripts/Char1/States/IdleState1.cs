@@ -45,17 +45,15 @@ public class IdleState1 : State1 {
             //walk right
             stateMachine.SetState(StateID.WalkForward);
         }
-
-        if (Input.GetKey(KeyCode.Z))
+        else if (Input.GetKeyDown(KeyCode.Z))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        if (Input.GetKey(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-
-        if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.Jump);
         }

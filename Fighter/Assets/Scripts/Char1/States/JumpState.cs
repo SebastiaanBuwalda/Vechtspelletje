@@ -16,7 +16,6 @@ public class JumpState : State1 {
 
     void Start()
     {
-        //stateMachine = GetComponent<StateMachine1>();
         Physics.gravity = new Vector3(0, -25, 0);
     }
 

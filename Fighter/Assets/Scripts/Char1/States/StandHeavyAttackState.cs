@@ -37,18 +37,13 @@ public class StandHeavyAttackState : State1 {
 
     public override void Reason()
     {
-        
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("H Punch"))
+        if(!Input.GetKeyDown(KeyCode.X))
         {
-            StartCoroutine(HeavyAtkLockTime());
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("H Punch"))
+            {
+                StartCoroutine(HeavyAtkLockTime());
+            }
         }
-
-        /*
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
-        {
-            StartCoroutine(HeavyAtkLockTime());
-        }
-         */
     }
 
     void MoveForward()

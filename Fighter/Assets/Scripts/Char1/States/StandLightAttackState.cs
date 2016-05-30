@@ -22,6 +22,8 @@ public class StandLightAttackState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 3);
+
+        Debug.Log("light attack enter");
     }
 
     public override void Act()
@@ -31,9 +33,12 @@ public class StandLightAttackState : State1 {
 
     public override void Reason()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
+        if(!Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(LightAtkLockTime());
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
+            {
+                StartCoroutine(LightAtkLockTime());
+            }
         }
     }
 

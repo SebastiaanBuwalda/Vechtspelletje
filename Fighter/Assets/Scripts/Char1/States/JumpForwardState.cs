@@ -17,13 +17,11 @@ public class JumpForwardState : State1 {
 
     void Start()
     {
-        //stateMachine = GetComponent<StateMachine1>();
         Physics.gravity = new Vector3(0, -25, 0);
     }
 
     public override void Enter()
     {
-        Debug.Log("Enter Forward Jump State");
         rb.AddForce(jumpVector, ForceMode.Impulse);
     }
 
