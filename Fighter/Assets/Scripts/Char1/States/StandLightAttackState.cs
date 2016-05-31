@@ -35,7 +35,7 @@ public class StandLightAttackState : State1 {
     {
         if(!Input.GetKeyDown(KeyCode.Z))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("L Punch"))
             {
                 StartCoroutine(LightAtkLockTime());
             }
