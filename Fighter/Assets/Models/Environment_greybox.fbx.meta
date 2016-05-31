@@ -1,0 +1,149 @@
+fileFormatVersion: 2
+guid: cdb1e9c534cffc54882e46690beec974
+timeCreated: 1464621516
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Axe
+    100002: Barrel
+    100004: Bones
+    100006: Box
+    100008: Cave
+    100010: Chain
+    100012: Dummy
+    100014: //RootNode
+    100016: Ground
+    100018: Plank
+    100020: Potion
+    100022: Rugs
+    100024: Sky
+    100026: Torch
+    100028: Trapdoor
+    100030: Window
+    400000: Axe
+    400002: Barrel
+    400004: Bones
+    400006: Box
+    400008: Cave
+    400010: Chain
+    400012: Dummy
+    400014: //RootNode
+    400016: Ground
+    400018: Plank
+    400020: Potion
+    400022: Rugs
+    400024: Sky
+    400026: Torch
+    400028: Trapdoor
+    400030: Window
+    2300000: Axe
+    2300002: Barrel
+    2300004: Bones
+    2300006: Box
+    2300008: Cave
+    2300010: Chain
+    2300012: Dummy
+    2300014: Ground
+    2300016: Plank
+    2300018: Potion
+    2300020: Rugs
+    2300022: Sky
+    2300024: Torch
+    2300026: Trapdoor
+    2300028: Window
+    3300000: Axe
+    3300002: Barrel
+    3300004: Bones
+    3300006: Box
+    3300008: Cave
+    3300010: Chain
+    3300012: Dummy
+    3300014: Ground
+    3300016: Plank
+    3300018: Potion
+    3300020: Rugs
+    3300022: Sky
+    3300024: Torch
+    3300026: Trapdoor
+    3300028: Window
+    4300000: Cave
+    4300002: Plank
+    4300004: Potion
+    4300006: Barrel
+    4300008: Box
+    4300010: Chain
+    4300012: Dummy
+    4300014: Torch
+    4300016: Axe
+    4300018: Window
+    4300020: Bones
+    4300022: Trapdoor
+    4300024: Rugs
+    4300026: Ground
+    4300028: Sky
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -27,7 +27,7 @@ public class JumpForwardState : State1 {
 
     public override void Reason()
     {
-        //clamp max jump velocity
+        //cap max jump velocity
         if (rb.velocity.y > 12.7f)
         {
             rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.z);
