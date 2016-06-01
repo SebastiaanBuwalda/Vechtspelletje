@@ -8,23 +8,46 @@ using System.Collections;
 
 public class CrouchState1 : State1 {
 
+	[SerializeField] private StateMachine1 stateMachine;
+	[SerializeField] private Animator anim;
+
+
     public override void Enter()
     {
-        base.Enter();
+		anim.SetInteger("AnimState", 6);
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+		ReadInputs ();
     }
 
     public override void Leave()
     {
-        base.Leave();
+       
     }
+
+	void ReadInputs()
+	{
+		if (!Input.anyKey) 
+		{
+			stateMachine.SetState (StateID.Idle);
+		} 
+		else if (Input.GetKeyDown (KeyCode.Z)) 
+		{
+			stateMachine.SetState (StateID.CrouchLightAttack);
+		}
+		else if (Input.GetKeyDown (KeyCode.X)) 
+		{
+			stateMachine.SetState (StateID.CrouchHeavyAttack);
+		}
+		else if (Input.GetKeyDown(KeyCode.Space))
+		{
+			stateMachine.SetState(StateID.Jump);
+		}
+	}
 }

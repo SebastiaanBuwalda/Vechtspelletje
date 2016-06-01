@@ -9,23 +9,43 @@ using System.Collections;
 
 public class CrouchHeavyAttackState : State1 {
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
+	[SerializeField] private StateMachine1 stateMachine;
+	[SerializeField] private Animator anim;
+	[SerializeField] private float lockTime;
+	public override void Enter()
+	{
+		anim.SetInteger("AnimState", 10);
+	}
 
-    public override void Act()
-    {
-        throw new System.NotImplementedException();
-    }
+	public override void Act()
+	{
 
-    public override void Reason()
-    {
-        throw new System.NotImplementedException();
-    }
+	}
 
-    public override void Leave()
-    {
-        base.Leave();
-    }
+	public override void Reason()
+	{
+		if(!Input.GetKeyDown(KeyCode.Z))
+		{
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Kick"))
+			{
+				StartCoroutine(LightAtkLockTime());
+			}
+		}
+	}
+
+	public override void Leave()
+	{
+
+	}
+
+	IEnumerator LightAtkLockTime()
+	{
+		yield return new WaitForSeconds(lockTime);
+		if(!Input.anyKey)
+			stateMachine.SetState(StateID.Idle);
+		else if(Input.GetKey(KeyCode.DownArrow))
+		{
+			stateMachine.SetState(StateID.Crouch);
+		}
+	}
 }
