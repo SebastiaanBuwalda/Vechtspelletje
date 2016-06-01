@@ -14,10 +14,14 @@ public class JumpForwardState : State1 {
     private Rigidbody rb;
     [SerializeField]
     private Vector3 jumpVector;
+    [SerializeField]
+    private Animator anim;
+
 
     public override void Enter()
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
+        anim.SetInteger("AnimState", 5);
     }
 
     public override void Act()

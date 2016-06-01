@@ -13,6 +13,7 @@ public class JumpState : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 jumpVector;
+    [SerializeField] private Animator anim;
 
     private Vector3 maxJumpVel = new Vector3(0, 12.7f, 0);
 
@@ -24,6 +25,7 @@ public class JumpState : State1 {
     public override void Enter()
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
+        anim.SetInteger("AnimState", 5);
     }
     
     public override void Act()
