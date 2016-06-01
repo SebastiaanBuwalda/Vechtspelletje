@@ -26,7 +26,7 @@ public class CrouchHeavyAttackState : State1 {
 	{
 		if(!Input.GetKeyDown(KeyCode.Z))
 		{
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Kick"))
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch kick"))
 			{
 				StartCoroutine(LightAtkLockTime());
 			}

@@ -25,7 +25,7 @@ public class CrouchLightAttackState : State1 {
     {
 		if(!Input.GetKeyDown(KeyCode.Z))
 		{
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Punch"))
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch punch"))
 			{
 				StartCoroutine(LightAtkLockTime());
 			}
