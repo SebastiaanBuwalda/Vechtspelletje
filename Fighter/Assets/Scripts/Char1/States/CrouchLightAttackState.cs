@@ -8,23 +8,43 @@ using System.Collections;
 
 public class CrouchLightAttackState : State1 {
 
+	[SerializeField] private StateMachine1 stateMachine;
+	[SerializeField] private Animator anim;
+	[SerializeField] private float lockTime;
     public override void Enter()
     {
-        base.Enter();
+		anim.SetInteger("AnimState", 9);
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+		
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+		if(!Input.GetKeyDown(KeyCode.Z))
+		{
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Punch"))
+			{
+				StartCoroutine(LightAtkLockTime());
+			}
+		}
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
     }
+
+	IEnumerator LightAtkLockTime()
+	{
+		yield return new WaitForSeconds(lockTime);
+		if(!Input.anyKey)
+			stateMachine.SetState(StateID.Idle);
+		else if(Input.GetKey(KeyCode.DownArrow))
+		{
+			stateMachine.SetState(StateID.Crouch);
+		}
+	}
 }

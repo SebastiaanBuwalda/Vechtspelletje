@@ -57,5 +57,9 @@ public class IdleState1 : State1 {
         {
             stateMachine.SetState(StateID.Jump);
         }
+		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			stateMachine.SetState (StateID.Crouch);
+		}
     }
 }
