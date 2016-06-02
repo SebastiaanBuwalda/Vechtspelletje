@@ -29,7 +29,6 @@ public class JumpForwardState : State1 {
 
     public override void Act()
     {
-        //Debug.Log(rb.velocity);
         anim.SetInteger("AnimState", 5);
     }
 

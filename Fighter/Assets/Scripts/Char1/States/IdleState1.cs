@@ -44,6 +44,15 @@ public class IdleState1 : State1 {
         }
     }
 
+    void Update()
+    {
+        //Debug.Log(rb.velocity);
+        if(rb.velocity.x > 3.9f || rb.velocity.y > 21.7f)
+        {
+            rb.velocity = new Vector3(3.9f, 12.7f, 0);
+        }
+    }
+
     void ReadInputs()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -66,6 +75,7 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
+            Debug.Log("IDLE STATE JUMP");
             stateMachine.SetState(StateID.Jump);
         }
 		else if (Input.GetKeyDown(KeyCode.DownArrow))

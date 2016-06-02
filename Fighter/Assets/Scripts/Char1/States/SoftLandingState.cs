@@ -34,6 +34,8 @@ public class SoftLandingState : State1 {
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Soft Landing"))
         {
+            if (!Input.anyKeyDown)
+                stateMachine.SetState(StateID.Idle);
             StartCoroutine(SoftLandingLag());
         }
 
@@ -59,7 +61,8 @@ public class SoftLandingState : State1 {
         else if(Input.GetKey(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.WalkForward);
-        }else if(Input.GetKeyDown(KeyCode.Z))
+        }
+        /*else if(Input.GetKeyDown(KeyCode.Z))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
@@ -76,7 +79,7 @@ public class SoftLandingState : State1 {
         }else if(Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.RightArrow))
         {
             stateMachine.SetState(StateID.JumpForward);
-        }        
+        }*/        
         else if(!Input.anyKey)
         {
             stateMachine.SetState(StateID.Idle);
