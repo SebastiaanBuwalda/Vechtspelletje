@@ -45,9 +45,5 @@ public class CrouchState1 : State1 {
 		{
 			stateMachine.SetState (StateID.CrouchHeavyAttack);
 		}
-		else if (Input.GetKeyDown(KeyCode.Space))
-		{
-			stateMachine.SetState(StateID.Jump);
-		}
 	}
 }
