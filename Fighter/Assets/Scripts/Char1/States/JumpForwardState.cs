@@ -17,16 +17,20 @@ public class JumpForwardState : State1 {
     [SerializeField]
     private Animator anim;
 
+    private bool inState;
+
 
     public override void Enter()
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
+        inState = true;
     }
 
     public override void Act()
     {
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
+        anim.SetInteger("AnimState", 5);
     }
 
     public override void Reason()
@@ -36,18 +40,32 @@ public class JumpForwardState : State1 {
         {
             rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.z);
         }
+
+        ReadInputs();
     }
 
     public override void Leave()
     {
-
+        inState = false;
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Floor")
+        if (coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+        }
+    }
+
+    void ReadInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            stateMachine.SetState(StateID.AirLightAttack);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            stateMachine.SetState(StateID.AirHeavyAttack);
         }
     }
 }

@@ -15,6 +15,8 @@ public class JumpState : State1 {
     [SerializeField] private Vector3 jumpVector;
     [SerializeField] private Animator anim;
 
+    private bool inState;
+
     private Vector3 maxJumpVel = new Vector3(0, 12.7f, 0);
 
     void Start()
@@ -26,11 +28,13 @@ public class JumpState : State1 {
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
+        Debug.Log("JUMP STATE ENTER");
+        inState = true;
     }
     
     public override void Act()
     {
-        Debug.Log(rb.velocity);
+
     }
 
     public override void Reason()
@@ -40,18 +44,36 @@ public class JumpState : State1 {
         {
             rb.velocity = maxJumpVel;
         }
+
+        ReadInputs();
     }
 
     public override void Leave()
     {
-        
+        inState = false;
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        if(coll.gameObject.tag == "Floor")
+        if(coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+        }
+    }
+
+    void ReadInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //Debug.Log("Pressed Z");
+            stateMachine.SetState(StateID.AirLightAttack);
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            //Debug.Log("Pressed X");
+            stateMachine.SetState(StateID.AirHeavyAttack);
+            
         }
     }
 }

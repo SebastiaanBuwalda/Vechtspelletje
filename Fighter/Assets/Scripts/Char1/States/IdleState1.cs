@@ -10,6 +10,9 @@ public class IdleState1 : State1 {
 
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
+    [SerializeField] private Rigidbody rb;
+
+    private bool grounded;
 
     public override void Enter()
     {
@@ -33,6 +36,14 @@ public class IdleState1 : State1 {
         
     }
 
+    void OnCollisionEnter(Collision coll)
+    {
+        if(coll.gameObject.tag == GameTags.floor)
+        {
+            grounded = true;
+        }
+    }
+
     void ReadInputs()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -53,7 +64,7 @@ public class IdleState1 : State1 {
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
             stateMachine.SetState(StateID.Jump);
         }

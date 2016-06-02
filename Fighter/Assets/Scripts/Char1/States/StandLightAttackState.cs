@@ -22,13 +22,11 @@ public class StandLightAttackState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 3);
-
-        Debug.Log("light attack enter");
     }
 
     public override void Act()
     {
-        anim.SetInteger("AnimState", 3);
+
     }
 
     public override void Reason()
