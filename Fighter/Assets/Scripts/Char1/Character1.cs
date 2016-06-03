@@ -37,6 +37,8 @@ public class Character1 : MonoBehaviour {
 
     private StateMachine1 stateMachine;
 
+    private Input input;
+
     void Start()
     {
         //change to inspector later
