@@ -2,30 +2,48 @@
 using System.Collections;
 
 /*
- * This class represents the light attack state.
+ * This class represents the light special state.
  * This attack is faster, weaker but has combo potential
  * if the opponent is hit by this attack he will enter hitstun.
  */
 
 public class LightSpecialState : State1 {
 
+	[SerializeField] private StateMachine1 stateMachine;
+	[SerializeField] private Animator anim;
+	[SerializeField] private float lockTime;
+
     public override void Enter()
     {
-        base.Enter();
+		anim.SetInteger("AnimState", 17);
+
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+		
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+		if(!Input.GetKeyDown(KeyCode.Z))
+		{
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("L Projectile"))
+			{
+				StartCoroutine(LightAtkLockTime());
+			}
+		}
     }
 
     public override void Leave()
     {
-        base.Leave();
+       
     }
+
+	IEnumerator LightAtkLockTime()
+	{
+		yield return new WaitForSeconds(lockTime);
+		if(!Input.anyKey||Input.GetKey(KeyCode.Z))
+			stateMachine.SetState(StateID.Idle);
+	}
 }

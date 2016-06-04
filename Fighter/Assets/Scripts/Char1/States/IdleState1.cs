@@ -12,6 +12,9 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 
+	private FightingInput hadouken = new FightingInput(new string[] { "down","right", "Fire1"});
+
+
     private bool grounded;
 
     public override void Enter()
@@ -22,7 +25,7 @@ public class IdleState1 : State1 {
 
     public override void Act()
     {
-        
+
     }
 
     public override void Reason()
@@ -33,7 +36,7 @@ public class IdleState1 : State1 {
 
     public override void Leave()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision coll)
@@ -55,7 +58,11 @@ public class IdleState1 : State1 {
 
     void ReadInputs()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+		if (hadouken.GetInput ())
+		{
+			stateMachine.SetState (StateID.LightSpecial);
+		}
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             //walk left
             stateMachine.SetState(StateID.WalkBackward);
