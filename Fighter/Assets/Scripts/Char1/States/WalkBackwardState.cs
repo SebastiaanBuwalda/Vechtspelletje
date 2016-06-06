@@ -11,6 +11,7 @@ public class WalkBackwardState : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
     [SerializeField] private Vector3 moveVector;
+	private FightingInput hadouken = new FightingInput(new string[] {"down","right", "Fire1"});
 
     public override void Enter()
     {
@@ -27,7 +28,10 @@ public class WalkBackwardState : State1 {
     public override void Reason()
     {
         anim.SetInteger("AnimState", 1);
-        if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+		if (hadouken.GetInput ())
+		{
+			stateMachine.SetState (StateID.LightSpecial);
+		}else if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             stateMachine.SetState(StateID.Idle);
         }else if(!Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))

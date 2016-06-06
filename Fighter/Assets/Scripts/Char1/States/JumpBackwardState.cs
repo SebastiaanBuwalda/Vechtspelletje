@@ -16,6 +16,8 @@ public class JumpBackwardState : State1 {
     private Vector3 jumpVector;
     [SerializeField]
     private Animator anim;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip jumpSound;
 
     private bool inState;
 
@@ -53,6 +55,8 @@ public class JumpBackwardState : State1 {
         if (coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+			audioSource.PlayOneShot (jumpSound);
+
         }
     }
 

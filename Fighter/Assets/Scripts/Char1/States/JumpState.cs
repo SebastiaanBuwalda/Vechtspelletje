@@ -14,6 +14,8 @@ public class JumpState : State1 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 jumpVector;
     [SerializeField] private Animator anim;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip jumpSound;
 
     private bool inState;
 
@@ -58,6 +60,8 @@ public class JumpState : State1 {
         if(coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+			audioSource.PlayOneShot (jumpSound);
+
         }
     }
 

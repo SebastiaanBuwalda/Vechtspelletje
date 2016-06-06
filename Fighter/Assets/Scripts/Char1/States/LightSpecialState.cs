@@ -13,11 +13,13 @@ public class LightSpecialState : State1 {
 	[SerializeField] private Animator anim;
 	[SerializeField] private float lockTime;
 	[SerializeField] private GameObject fireball;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip fireballSound;
 
     public override void Enter()
     {
 		anim.SetInteger ("AnimState", 17);
-
+		audioSource.PlayOneShot (fireballSound);
 
 
     }

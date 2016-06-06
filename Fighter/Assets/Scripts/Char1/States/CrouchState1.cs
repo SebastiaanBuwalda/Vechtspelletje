@@ -11,6 +11,8 @@ public class CrouchState1 : State1 {
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
 
+	private FightingInput hadouken = new FightingInput(new string[] { "right", "Fire1"});
+
 
     public override void Enter()
     {
@@ -33,7 +35,11 @@ public class CrouchState1 : State1 {
 
 	void ReadInputs()
 	{
-		if (!Input.anyKey) 
+		if (hadouken.GetInput ())
+		{
+			stateMachine.SetState (StateID.LightSpecial);
+		}
+		else if (!Input.anyKey) 
 		{
 			stateMachine.SetState (StateID.Idle);
 		} 

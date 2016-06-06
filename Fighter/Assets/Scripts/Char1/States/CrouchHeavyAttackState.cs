@@ -12,9 +12,12 @@ public class CrouchHeavyAttackState : State1 {
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
 	[SerializeField] private float lockTime;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip sweepSound;
 	public override void Enter()
 	{
 		anim.SetInteger("AnimState", 10);
+		audioSource.PlayOneShot (sweepSound);
 	}
 
 	public override void Act()
