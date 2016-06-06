@@ -41,7 +41,10 @@ public class CrouchLightAttackState : State1 {
 	{
 		yield return new WaitForSeconds(lockTime);
 		if(!Input.anyKey)
-			stateMachine.SetState(StateID.Idle);
+        {
+            Input.ResetInputAxes();
+            stateMachine.SetState(StateID.Idle);
+        }	
 		else if(Input.GetKey(KeyCode.DownArrow))
 		{
 			stateMachine.SetState(StateID.Crouch);

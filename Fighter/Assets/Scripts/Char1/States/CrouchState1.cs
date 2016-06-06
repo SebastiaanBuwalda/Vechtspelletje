@@ -39,10 +39,12 @@ public class CrouchState1 : State1 {
 		} 
 		else if (Input.GetKeyDown (KeyCode.Z)) 
 		{
+            Input.ResetInputAxes();
 			stateMachine.SetState (StateID.CrouchLightAttack);
 		}
 		else if (Input.GetKeyDown (KeyCode.X)) 
 		{
+            Input.ResetInputAxes();
 			stateMachine.SetState (StateID.CrouchHeavyAttack);
 		}
 	}

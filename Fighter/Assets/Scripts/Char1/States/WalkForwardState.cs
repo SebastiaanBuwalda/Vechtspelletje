@@ -34,17 +34,15 @@ public class WalkForwardState : State1 {
         {
             stateMachine.SetState(StateID.WalkBackward);
         }
-
-        if (Input.GetKey(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.Z))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        if (Input.GetKey(KeyCode.X))
+        else if (Input.GetKey(KeyCode.X))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-
-        if(Input.GetKey(KeyCode.Space))
+        else if(Input.GetKey(KeyCode.Space))
         {
             stateMachine.SetState(StateID.JumpForward);
         }

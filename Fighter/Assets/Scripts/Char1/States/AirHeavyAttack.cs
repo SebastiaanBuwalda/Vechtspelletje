@@ -57,11 +57,11 @@ public class AirHeavyAttack : State1 {
 
     void ActivateAirHeavyHitbox()
     {
-
+        hitBox.SetActive(true);
     }
 
     void DeactivateAirHeavyHitbox()
     {
-
+        hitBox.SetActive(false);
     }
 }
