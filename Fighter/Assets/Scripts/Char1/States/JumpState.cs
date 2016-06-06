@@ -14,6 +14,8 @@ public class JumpState : State1 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 jumpVector;
     [SerializeField] private Animator anim;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip jumpSound;
 
     private bool inState;
 
@@ -60,6 +62,8 @@ public class JumpState : State1 {
         {
             Debug.Log("GO BACK TO IDLE FROM JUMP");
             stateMachine.SetState(StateID.Idle);
+			audioSource.PlayOneShot (jumpSound);
+
         }
     }
 

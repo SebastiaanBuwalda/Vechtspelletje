@@ -12,9 +12,13 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 
+<<<<<<< HEAD
     private bool inState;
 
 	private FightingInput hadouken = new FightingInput(new string[] { "down","right", "Fire1"});
+=======
+	private FightingInput hadouken = new FightingInput(new string[] {"down","right", "Fire1"});
+>>>>>>> ee319c5aad4bb555966d31742af0dff870120bb7
 
 
     private bool grounded;
@@ -29,6 +33,7 @@ public class IdleState1 : State1 {
         }
         
         anim.SetInteger("AnimState", 0);
+
     }
 
     public override void Act()

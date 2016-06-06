@@ -16,12 +16,19 @@ public class JumpForwardState : State1 {
     private Vector3 jumpVector;
     [SerializeField]
     private Animator anim;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip jumpSound;
+
 
     private bool inState;
 
     public override void Enter()
     {
+<<<<<<< HEAD
         Input.ResetInputAxes();
+=======
+
+>>>>>>> ee319c5aad4bb555966d31742af0dff870120bb7
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
         inState = true;
@@ -54,6 +61,7 @@ public class JumpForwardState : State1 {
         if (coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+			audioSource.PlayOneShot (jumpSound);
         }
     }
 
