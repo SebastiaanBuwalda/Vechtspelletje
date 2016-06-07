@@ -12,39 +12,34 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 
-<<<<<<< HEAD
     private bool inState;
 
 	private FightingInput hadouken = new FightingInput(new string[] { "down","right", "Fire1"});
-=======
-	private FightingInput hadouken = new FightingInput(new string[] {"down","right", "Fire1"});
->>>>>>> ee319c5aad4bb555966d31742af0dff870120bb7
 
 
     private bool grounded;
 
     public override void Enter()
     {
+        anim.SetInteger("AnimState", 0);
         Input.ResetInputAxes();
 
         if (!anim.IsInTransition(0))
         {
             ReadInputs();
         }
-        
-        anim.SetInteger("AnimState", 0);
-
+        Debug.Log("IDLE ENTER");
     }
 
     public override void Act()
     {
-        anim.SetInteger("AnimState", 0);
+        if (!anim.IsInTransition(0))
+            ReadInputs();
     }
 
     public override void Reason()
     {
-        if (!anim.IsInTransition(0))
-            ReadInputs();
+        anim.SetInteger("AnimState", 0);
     }
 
     public override void Leave()
@@ -57,9 +52,6 @@ public class IdleState1 : State1 {
         if(coll.gameObject.tag == GameTags.floor)
         {
             grounded = true;
-        }else if(coll.gameObject.tag != GameTags.floor)
-        {
-            //grounded = false;
         }
     }
 
@@ -104,6 +96,7 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
+            Debug.Log("From Idle to LightAttack");
             stateMachine.SetState(StateID.StandLightAttack);
         }
         else if (Input.GetKeyDown(KeyCode.X))

@@ -25,7 +25,11 @@ public class CrouchState1 : State1 {
 
     public override void Reason()
     {
-		ReadInputs ();
+		
+        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Up"))
+        {
+            ReadInputs();
+        }
     }
 
     public override void Leave()
@@ -41,6 +45,7 @@ public class CrouchState1 : State1 {
 		}
 		else if (!Input.anyKey) 
 		{
+            Debug.Log("From Crouch to Idle");
 			stateMachine.SetState (StateID.Idle);
 		} 
 		else if (Input.GetKeyDown (KeyCode.Z)) 

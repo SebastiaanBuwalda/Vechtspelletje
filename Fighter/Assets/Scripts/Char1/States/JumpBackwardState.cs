@@ -28,6 +28,10 @@ public class JumpBackwardState : State1 {
         anim.SetInteger("AnimState", 5);
 
         inState = true;
+
+        Debug.Log("<color=red> BACKWARD JUMP ENTER </color>");
+
+        
     }
 
     public override void Act()

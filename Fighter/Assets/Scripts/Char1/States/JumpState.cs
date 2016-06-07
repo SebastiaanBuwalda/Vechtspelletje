@@ -32,6 +32,8 @@ public class JumpState : State1 {
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
         inState = true;
+
+        Debug.Log("<color=red> NEUTRAL JUMP ENTER </color>");
     }
     
     public override void Act()

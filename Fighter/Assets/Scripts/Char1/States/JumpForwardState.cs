@@ -24,14 +24,12 @@ public class JumpForwardState : State1 {
 
     public override void Enter()
     {
-<<<<<<< HEAD
         Input.ResetInputAxes();
-=======
-
->>>>>>> ee319c5aad4bb555966d31742af0dff870120bb7
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
         inState = true;
+
+        Debug.Log("<color=red> FORWARD JUMP ENTER </color>");
     }
 
     public override void Act()

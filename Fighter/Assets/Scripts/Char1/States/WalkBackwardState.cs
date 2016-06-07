@@ -42,11 +42,11 @@ public class WalkBackwardState : State1 {
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        else if(Input.GetKey(KeyCode.X))
+        else if(Input.GetKeyDown(KeyCode.X))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-        else if(Input.GetKey(KeyCode.Space))
+        else if(Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.JumpBackward);
         }

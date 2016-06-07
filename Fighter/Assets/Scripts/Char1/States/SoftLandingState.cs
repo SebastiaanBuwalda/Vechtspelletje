@@ -33,7 +33,9 @@ public class SoftLandingState : State1 {
 
     public override void Reason()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Soft Landing") && !anim.IsInTransition(0))
+        
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Soft Landing"))
         {
             if (!Input.anyKeyDown)
                 stateMachine.SetState(StateID.Idle);

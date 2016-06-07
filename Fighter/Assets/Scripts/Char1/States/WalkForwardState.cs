@@ -15,7 +15,7 @@ public class WalkForwardState : State1 {
 
     public override void Enter()
     {
-        anim.SetInteger("AnimState", 3);
+        anim.SetInteger("AnimState", 2);
     }
 
     public override void Act()
@@ -43,11 +43,11 @@ public class WalkForwardState : State1 {
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        else if (Input.GetKey(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-        else if(Input.GetKey(KeyCode.Space))
+        else if(Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.JumpForward);
         }

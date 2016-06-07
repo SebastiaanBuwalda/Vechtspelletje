@@ -21,8 +21,9 @@ public class StandLightAttackState : State1 {
 
     public override void Enter()
     {
+        Debug.Log("LightAttack Enter");
         anim.SetInteger("AnimState", 3);
-        //Input.ResetInputAxes();
+        Input.ResetInputAxes();
     }
 
     public override void Act()
@@ -59,7 +60,7 @@ public class StandLightAttackState : State1 {
     IEnumerator LightAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey||Input.GetKey(KeyCode.Z))
+		if(!Input.anyKey||Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
             stateMachine.SetState(StateID.Idle);
         else if(Input.GetKey(KeyCode.LeftArrow))
         {
