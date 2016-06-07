@@ -23,6 +23,7 @@ public class SoftLandingState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 13);
+        Input.ResetInputAxes();
     }
 
     public override void Act()
@@ -32,6 +33,8 @@ public class SoftLandingState : State1 {
 
     public override void Reason()
     {
+        
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Soft Landing"))
         {
             if (!Input.anyKeyDown)
@@ -54,34 +57,46 @@ public class SoftLandingState : State1 {
     IEnumerator SoftLandingLag()
     {
         yield return new WaitForSeconds(lockTime);
+        ReadInputs();
+    }
+
+    void ReadInputs()
+    {
         if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.WalkBackward);
-        }  
-        else if(Input.GetKey(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.Space))
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.WalkForward);
         }
-        /*else if(Input.GetKeyDown(KeyCode.Z))
+        else if (Input.GetKeyDown(KeyCode.Z))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        else if(Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-        else if(Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             stateMachine.SetState(StateID.Crouch);
-        }else if(Input.GetKeyDown(KeyCode.Space))
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.SetState(StateID.Jump);
-        }else if(Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.RightArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.RightArrow))
         {
             stateMachine.SetState(StateID.JumpForward);
-        }*/        
-        else if(!Input.anyKey)
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            stateMachine.SetState(StateID.JumpBackward);
+        }
+        else if (!Input.anyKey)
+        {
+            Debug.Log("GO BACK TO IDLE FROM LANDING");
             stateMachine.SetState(StateID.Idle);
         }
     }

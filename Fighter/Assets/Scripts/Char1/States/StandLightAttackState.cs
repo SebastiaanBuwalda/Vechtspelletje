@@ -21,7 +21,9 @@ public class StandLightAttackState : State1 {
 
     public override void Enter()
     {
+        Debug.Log("LightAttack Enter");
         anim.SetInteger("AnimState", 3);
+        Input.ResetInputAxes();
     }
 
     public override void Act()
@@ -31,12 +33,9 @@ public class StandLightAttackState : State1 {
 
     public override void Reason()
     {
-        if(!Input.GetKeyDown(KeyCode.Z))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch") && !anim.IsInTransition(0))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
-            {
-                StartCoroutine(LightAtkLockTime());
-            }
+            StartCoroutine(LightAtkLockTime());
         }
     }
 
@@ -61,7 +60,7 @@ public class StandLightAttackState : State1 {
     IEnumerator LightAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey||Input.GetKey(KeyCode.Z))
+		if(!Input.anyKey||Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
             stateMachine.SetState(StateID.Idle);
         else if(Input.GetKey(KeyCode.LeftArrow))
         {

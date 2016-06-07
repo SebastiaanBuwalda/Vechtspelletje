@@ -16,6 +16,7 @@ public class CrouchHeavyAttackState : State1 {
 	[SerializeField] private AudioClip sweepSound;
 	public override void Enter()
 	{
+        Input.ResetInputAxes();
 		anim.SetInteger("AnimState", 10);
 		audioSource.PlayOneShot (sweepSound);
 	}
@@ -27,13 +28,10 @@ public class CrouchHeavyAttackState : State1 {
 
 	public override void Reason()
 	{
-		if(!Input.GetKeyDown(KeyCode.Z))
-		{
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch kick"))
-			{
-				StartCoroutine(LightAtkLockTime());
-			}
-		}
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch kick") && !anim.IsInTransition(0))
+        {
+            StartCoroutine(LightAtkLockTime());
+        }
 	}
 
 	public override void Leave()
@@ -45,7 +43,9 @@ public class CrouchHeavyAttackState : State1 {
 	{
 		yield return new WaitForSeconds(lockTime);
 		if(!Input.anyKey)
-			stateMachine.SetState(StateID.Idle);
+        {
+            stateMachine.SetState(StateID.Idle);
+        }	
 		else if(Input.GetKey(KeyCode.DownArrow))
 		{
 			stateMachine.SetState(StateID.Crouch);

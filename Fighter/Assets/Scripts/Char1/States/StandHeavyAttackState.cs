@@ -24,6 +24,7 @@ public class StandHeavyAttackState : State1 {
 
     public override void Enter()
     {
+        //Input.ResetInputAxes();
         anim.SetInteger("AnimState", 4);
         shouldMove = true;
     }
@@ -32,17 +33,13 @@ public class StandHeavyAttackState : State1 {
     {
         anim.SetInteger("AnimState", 4);
         MoveForward();
-        
     }
 
     public override void Reason()
     {
-        if(!Input.GetKeyDown(KeyCode.X))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("H Punch") && !anim.IsInTransition(0))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("H Punch"))
-            {
-                StartCoroutine(HeavyAtkLockTime());
-            }
+            StartCoroutine(HeavyAtkLockTime());
         }
     }
 
@@ -78,7 +75,7 @@ public class StandHeavyAttackState : State1 {
     IEnumerator HeavyAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey||Input.GetKey(KeyCode.X))
+        if (!Input.anyKey || Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
             stateMachine.SetState(StateID.Idle);
         else if(Input.GetKey(KeyCode.RightArrow))
         {

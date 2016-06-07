@@ -32,7 +32,7 @@ public class LightSpecialState : State1
     {
 		if(!Input.GetKeyDown(KeyCode.Z))
 		{
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("L Projectile"))
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("L Projectile") && !anim.IsInTransition(0))
 			{
 				StartCoroutine(LightAtkLockTime());
 			}

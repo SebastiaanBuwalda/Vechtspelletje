@@ -23,19 +23,25 @@ public class JumpBackwardState : State1 {
 
     public override void Enter()
     {
+        Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
 
         inState = true;
+
+        Debug.Log("<color=red> BACKWARD JUMP ENTER </color>");
+
+        
     }
 
     public override void Act()
     {
-
+        anim.SetInteger("AnimState", 5);
     }
 
     public override void Reason()
     {
+        anim.SetInteger("AnimState", 5);
         //clamp jump velocity
         if (rb.velocity.y > 12.7f)
         {

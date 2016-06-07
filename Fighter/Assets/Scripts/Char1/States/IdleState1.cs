@@ -12,27 +12,32 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 	[SerializeField] private StateFreeInputHandler inputHandler;
-
+    private bool inState;
 
 
     private bool grounded;
 
     public override void Enter()
     {
-        ReadInputs();
         anim.SetInteger("AnimState", 0);
+        Input.ResetInputAxes();
 
+        if (!anim.IsInTransition(0))
+        {
+            ReadInputs();
+        }
+        Debug.Log("IDLE ENTER");
     }
 
     public override void Act()
     {
-
+        if (!anim.IsInTransition(0))
+            ReadInputs();
     }
 
     public override void Reason()
     {
         anim.SetInteger("AnimState", 0);
-        ReadInputs();
     }
 
     public override void Leave()
@@ -48,23 +53,37 @@ public class IdleState1 : State1 {
         }
     }
 
+    void OnCollisionExit(Collision coll)
+    {
+        if(coll.gameObject.tag == GameTags.floor)
+        {
+            grounded = false;
+        }
+    }
+
     void Update()
     {
-        //Debug.Log(rb.velocity);
+        //limit velocity
         if(rb.velocity.x > 3.9f || rb.velocity.y > 21.7f)
         {
             rb.velocity = new Vector3(3.9f, 12.7f, 0);
+        }
+
+        if(inState)
+        {
+            stateMachine.SetState(StateID.Jump);
         }
     }
 
     void ReadInputs()
     {
-		if (inputHandler.returnHadouken ()) {
+		if (inputHandler.returnHadouken ())
+    {
 			stateMachine.SetState (StateID.LightSpecial);
-		} 
-		else if (inputHandler.returnHadoukenHeavy ()) 
+		}
+		else if (inputHandler.returnHadoukenHeavy ())
 		{
-			stateMachine.SetState (StateID.HeavySpecial); 
+			stateMachine.SetState (StateID.HeavySpecial);
 		}
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -78,6 +97,7 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
+            Debug.Log("From Idle to LightAttack");
             stateMachine.SetState(StateID.StandLightAttack);
         }
         else if (Input.GetKeyDown(KeyCode.X))
@@ -86,7 +106,7 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
-            Debug.Log("IDLE STATE JUMP");
+            Debug.Log("Idle Jump");
             stateMachine.SetState(StateID.Jump);
         }
 		else if (Input.GetKeyDown(KeyCode.DownArrow))

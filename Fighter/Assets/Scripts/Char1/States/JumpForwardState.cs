@@ -22,13 +22,14 @@ public class JumpForwardState : State1 {
 
     private bool inState;
 
-
     public override void Enter()
     {
-
+        Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
         inState = true;
+
+        Debug.Log("<color=red> FORWARD JUMP ENTER </color>");
     }
 
     public override void Act()
@@ -38,6 +39,7 @@ public class JumpForwardState : State1 {
 
     public override void Reason()
     {
+        anim.SetInteger("AnimState", 5);
         //cap max jump velocity
         if (rb.velocity.y > 12.7f)
         {

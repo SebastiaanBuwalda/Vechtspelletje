@@ -28,19 +28,22 @@ public class JumpState : State1 {
 
     public override void Enter()
     {
+        Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);
-        Debug.Log("JUMP STATE ENTER");
         inState = true;
+
+        Debug.Log("<color=red> NEUTRAL JUMP ENTER </color>");
     }
     
     public override void Act()
     {
-
+        anim.SetInteger("AnimState", 5);
     }
 
     public override void Reason()
     {
+        anim.SetInteger("AnimState", 5);
         //cap max jump velocity
         if(rb.velocity.y > 12.7f)
         {
@@ -59,10 +62,17 @@ public class JumpState : State1 {
     {
         if(coll.gameObject.tag == "Floor" && inState == true)
         {
+            Debug.Log("GO BACK TO IDLE FROM JUMP");
             stateMachine.SetState(StateID.Idle);
 			audioSource.PlayOneShot (jumpSound);
 
         }
+    }
+
+    void Update()
+    {
+        if(inState)
+            anim.SetInteger("AnimState", 5);
     }
 
     void ReadInputs()
@@ -78,6 +88,14 @@ public class JumpState : State1 {
             //Debug.Log("Pressed X");
             stateMachine.SetState(StateID.AirHeavyAttack);
             
+        }
+        else if(Input.GetKey(KeyCode.Space))
+        {
+            anim.SetInteger("AnimState", 5);
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("AnimState", 5);
         }
     }
 }
