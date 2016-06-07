@@ -11,7 +11,9 @@ public class WalkForwardState : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
     [SerializeField] private Vector3 moveVector;
-	private FightingInput hadouken = new FightingInput(new string[] {"down","right", "Fire1"});
+	[SerializeField] private StateFreeInputHandler inputHandler;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip walkingSound;
 
     public override void Enter()
     {
@@ -22,12 +24,13 @@ public class WalkForwardState : State1 {
     {
         transform.Translate(moveVector * Time.deltaTime);
         //transform.Translate(new Vector3(2, 0, 0) * Time.deltaTime);
+		audioSource.PlayOneShot(walkingSound);
     }
 
     public override void Reason()
     {
         anim.SetInteger("AnimState", 2);
-		if (hadouken.GetInput ())
+		if (inputHandler.returnHadouken ()) 
 		{
 			stateMachine.SetState (StateID.LightSpecial);
 		}

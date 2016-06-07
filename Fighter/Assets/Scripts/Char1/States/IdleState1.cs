@@ -11,8 +11,8 @@ public class IdleState1 : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
+	[SerializeField] private StateFreeInputHandler inputHandler;
 
-	private FightingInput hadouken = new FightingInput(new string[] {"down","right", "Fire1"});
 
 
     private bool grounded;
@@ -59,9 +59,12 @@ public class IdleState1 : State1 {
 
     void ReadInputs()
     {
-		if (hadouken.GetInput ())
-		{
+		if (inputHandler.returnHadouken ()) {
 			stateMachine.SetState (StateID.LightSpecial);
+		} 
+		else if (inputHandler.returnHadoukenHeavy ()) 
+		{
+			stateMachine.SetState (StateID.HeavySpecial); 
 		}
         else if (Input.GetKey(KeyCode.LeftArrow))
         {

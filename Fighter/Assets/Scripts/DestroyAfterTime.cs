@@ -14,6 +14,6 @@ public class DestroyAfterTime : MonoBehaviour {
 	IEnumerator DestroyTimer()
 	{
 		yield return new WaitForSeconds (destroySeconds);
-		Destroy (gameObject);
+		ObjectPool.instance.PoolObject(gameObject);
 	}
 }

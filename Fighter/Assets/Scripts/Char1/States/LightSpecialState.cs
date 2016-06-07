@@ -7,7 +7,8 @@ using System.Collections;
  * if the opponent is hit by this attack he will enter hitstun.
  */
 
-public class LightSpecialState : State1 {
+public class LightSpecialState : State1 
+{
 
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
@@ -16,12 +17,10 @@ public class LightSpecialState : State1 {
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip fireballSound;
 
+
     public override void Enter()
     {
 		anim.SetInteger ("AnimState", 17);
-		audioSource.PlayOneShot (fireballSound);
-
-
     }
 
     public override void Act()
@@ -38,17 +37,21 @@ public class LightSpecialState : State1 {
 				StartCoroutine(LightAtkLockTime());
 			}
 		}
-    }
+	}
 
     public override void Leave()
     {
-		Instantiate(fireball,new Vector3(this.transform.position.x+1,transform.position.y+1.68f, this.transform.position.z),Quaternion.identity);
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("L Projectile")) {
+			audioSource.PlayOneShot (fireballSound);
+			GameObject temp = ObjectPool.instance.GetObjectForType("HadoukenLight", false);
+			temp.gameObject.transform.position = new Vector3 (this.transform.position.x + 1, transform.position.y + 1.68f, this.transform.position.z);
+		}
     }
 
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-		if (!Input.anyKey || Input.GetKey (KeyCode.Z))
+		if (!Input.anyKey)
 		{
 			
 			stateMachine.SetState (StateID.Idle);
