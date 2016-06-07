@@ -30,8 +30,6 @@ public class JumpBackwardState : State1 {
         inState = true;
 
         Debug.Log("<color=red> BACKWARD JUMP ENTER </color>");
-
-        
     }
 
     public override void Act()
