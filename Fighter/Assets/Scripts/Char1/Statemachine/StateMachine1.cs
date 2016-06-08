@@ -12,9 +12,16 @@ public class StateMachine1 : MonoBehaviour {
 
 	/** We maken een dictionary aan om de states in bij te houden */
 	private Dictionary<StateID, State1> states = new Dictionary<StateID, State1> ();
-
+    private int currIdInt;
+    public int CurrIdInt
+    {
+        get { return currIdInt; }
+        set { currIdInt = value; }
+    }
 	/** een verwijzing naar de huidige staat waarin we verkeren */
 	private State1 currentState;
+  
+    
 	
 	void Update () {
 		// als we een state hebben: uitvoeren die hap
@@ -22,9 +29,6 @@ public class StateMachine1 : MonoBehaviour {
 			currentState.Reason();
 			currentState.Act();
 		}
-
-        //Debug.Log(currentState);
-		
 	}
 
 	/// <summary>
@@ -42,7 +46,8 @@ public class StateMachine1 : MonoBehaviour {
 
 		/** we stellen de nieuwe currentState in */
 		currentState = states[stateID];
-
+        currIdInt = (int)stateID;
+        Debug.Log(currIdInt);
 		/** we geven de nieuwe state de mogelijkheid om zich zelf in te stellen */
 		currentState.Enter();
 	}
@@ -58,4 +63,5 @@ public class StateMachine1 : MonoBehaviour {
 		states.Add( stateID, state );
 	}
 
+   
 }

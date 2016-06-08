@@ -8,96 +8,23 @@ using System.Collections;
 
 public class SoftLandingState : State1 {
 
-    [SerializeField]
-    private StateMachine1 stateMachine;
-
-    [SerializeField]
-    private Animator anim;
-
-    [SerializeField]
-    private float lockTime;
-
-    [SerializeField]
-    private Rigidbody rb;
-
     public override void Enter()
     {
-        anim.SetInteger("AnimState", 13);
-        Input.ResetInputAxes();
+        base.Enter();
     }
 
     public override void Act()
     {
-        
+        throw new System.NotImplementedException();
     }
 
     public override void Reason()
     {
-        
-
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Soft Landing"))
-        {
-            if (!Input.anyKeyDown)
-                stateMachine.SetState(StateID.Idle);
-            StartCoroutine(SoftLandingLag());
-        }
-
-        if(rb.velocity != Vector3.zero)
-        {
-            //Debug.Log("Locking Velocity");
-            rb.velocity = Vector3.zero;
-        }
+        throw new System.NotImplementedException();
     }
 
     public override void Leave()
     {
-        
-    }
-
-    IEnumerator SoftLandingLag()
-    {
-        yield return new WaitForSeconds(lockTime);
-        ReadInputs();
-    }
-
-    void ReadInputs()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.Space))
-        {
-            stateMachine.SetState(StateID.WalkBackward);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.Space))
-        {
-            stateMachine.SetState(StateID.WalkForward);
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            stateMachine.SetState(StateID.StandLightAttack);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            stateMachine.SetState(StateID.StandHeavyAttack);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            stateMachine.SetState(StateID.Crouch);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            stateMachine.SetState(StateID.Jump);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            stateMachine.SetState(StateID.JumpForward);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            stateMachine.SetState(StateID.JumpBackward);
-        }
-        else if (!Input.anyKey)
-        {
-            Debug.Log("GO BACK TO IDLE FROM LANDING");
-            stateMachine.SetState(StateID.Idle);
-        }
+        base.Leave();
     }
 }

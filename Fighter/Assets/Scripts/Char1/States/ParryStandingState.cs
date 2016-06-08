@@ -8,24 +8,35 @@ using System.Collections;
  */
 
 public class ParryStandingState : State1 {
+    private float ParryLength;
 
     public override void Enter()
     {
-        base.Enter();
+        ParryLength = 2;
+        StartCoroutine(FullParry());
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+            
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+            
     }
 
     public override void Leave()
     {
-        base.Leave();
+
+    }
+
+    IEnumerator FullParry()
+    {
+        
+        
+
+        
+        yield return new WaitForSeconds(ParryLength);
     }
 }

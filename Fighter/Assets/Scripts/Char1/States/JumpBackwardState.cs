@@ -14,69 +14,39 @@ public class JumpBackwardState : State1 {
     private Rigidbody rb;
     [SerializeField]
     private Vector3 jumpVector;
-    [SerializeField]
-    private Animator anim;
-	[SerializeField] private AudioSource audioSource;
-	[SerializeField] private AudioClip jumpSound;
-	[SerializeField] private PositionBasedFlip positionBasedFlip;
 
-
-    private bool inState;
+    void Start()
+    {
+        //stateMachine = GetComponent<StateMachine1>();
+        Physics.gravity = new Vector3(0, -25, 0);
+    }
 
     public override void Enter()
     {
-		positionBasedFlip.enabled = false;
-
-        Input.ResetInputAxes();
+        Debug.Log("Enter Jump State");
         rb.AddForce(jumpVector, ForceMode.Impulse);
-        anim.SetInteger("AnimState", 5);
-
-        inState = true;
-
-        Debug.Log("<color=red> BACKWARD JUMP ENTER </color>");
     }
 
     public override void Act()
     {
-        anim.SetInteger("AnimState", 5);
+
     }
 
     public override void Reason()
     {
-        anim.SetInteger("AnimState", 5);
-        //clamp jump velocity
-        if (rb.velocity.y > 12.7f)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.z);
-        }
 
-        ReadInputs();
     }
 
     public override void Leave()
     {
-        inState = false;
+        
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Floor" && inState == true)
+        if (coll.gameObject.tag == "Floor")
         {
             stateMachine.SetState(StateID.Idle);
-			audioSource.PlayOneShot (jumpSound);
-
-        }
-    }
-
-    void ReadInputs()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            stateMachine.SetState(StateID.AirLightAttack);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            stateMachine.SetState(StateID.AirHeavyAttack);
         }
     }
 }
