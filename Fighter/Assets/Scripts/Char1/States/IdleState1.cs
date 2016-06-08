@@ -12,7 +12,7 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 	[SerializeField] private StateFreeInputHandler inputHandler;
-    private bool inState;
+	private bool inState = false;
 
 
     private bool grounded;
