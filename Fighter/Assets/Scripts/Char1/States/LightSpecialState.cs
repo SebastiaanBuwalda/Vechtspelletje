@@ -16,7 +16,7 @@ public class LightSpecialState : State1
 	[SerializeField] private GameObject fireball;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip fireballSound;
-
+	[SerializeField] private PositionBasedFlip positionBasedFlip;
 
     public override void Enter()
     {
@@ -44,7 +44,13 @@ public class LightSpecialState : State1
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("L Projectile")) {
 			audioSource.PlayOneShot (fireballSound);
 			GameObject temp = ObjectPool.instance.GetObjectForType("HadoukenLight", false);
-			temp.gameObject.transform.position = new Vector3 (this.transform.position.x + 1, transform.position.y + 1.68f, this.transform.position.z);
+			if (positionBasedFlip.FacingLeft) {
+				temp.gameObject.transform.position = new Vector3 (this.transform.position.x - 1, transform.position.y + 1.68f, this.transform.position.z);
+				Vector3 hadoukenVector = temp.gameObject.GetComponent<MoveWithVector> ().MoveVector;
+				temp.gameObject.GetComponent<MoveWithVector> ().MoveVector = new Vector3 (hadoukenVector.x * -1, hadoukenVector.y, hadoukenVector.z);
+			} else {
+				temp.gameObject.transform.position = new Vector3 (this.transform.position.x + 1, transform.position.y + 1.68f, this.transform.position.z);
+			}
 		}
     }
 

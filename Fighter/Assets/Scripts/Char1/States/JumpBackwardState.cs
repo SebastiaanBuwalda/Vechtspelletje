@@ -18,11 +18,15 @@ public class JumpBackwardState : State1 {
     private Animator anim;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip jumpSound;
+	[SerializeField] private PositionBasedFlip positionBasedFlip;
+
 
     private bool inState;
 
     public override void Enter()
     {
+		positionBasedFlip.enabled = false;
+
         Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);

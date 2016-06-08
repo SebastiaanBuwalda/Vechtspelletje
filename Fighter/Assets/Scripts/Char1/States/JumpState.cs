@@ -16,6 +16,7 @@ public class JumpState : State1 {
     [SerializeField] private Animator anim;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip jumpSound;
+	[SerializeField] private PositionBasedFlip positionBasedFlip;
 
     private bool inState;
 
@@ -23,11 +24,13 @@ public class JumpState : State1 {
 
     void Start()
     {
+
         Physics.gravity = new Vector3(0, -25, 0);
     }
 
     public override void Enter()
     {
+		positionBasedFlip.enabled = false;
         Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         anim.SetInteger("AnimState", 5);

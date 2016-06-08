@@ -21,6 +21,9 @@ public class StandHeavyAttackState : State1 {
 
     private bool shouldMove;
 
+	[SerializeField]
+	private PositionBasedFlip positionBasedFlip;
+
 
     public override void Enter()
     {
@@ -45,8 +48,15 @@ public class StandHeavyAttackState : State1 {
 
     void MoveForward()
     {
-        if(shouldMove)
-            transform.Translate(moveVector * Time.deltaTime);
+		if (shouldMove) 
+		{
+			if (!positionBasedFlip.facingLeft)
+				transform.Translate (moveVector * Time.deltaTime);
+			else {
+				transform.Translate ((moveVector*-1) * Time.deltaTime);
+
+			}
+		}
     }
 
     void StopMoveing()

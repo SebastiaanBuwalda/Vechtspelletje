@@ -12,6 +12,8 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 	[SerializeField] private StateFreeInputHandler inputHandler;
+	[SerializeField] private PositionBasedFlip positionBasedFlip;
+
 	private bool inState = false;
 
 
@@ -19,6 +21,7 @@ public class IdleState1 : State1 {
 
     public override void Enter()
     {
+		positionBasedFlip.enabled = true;
         anim.SetInteger("AnimState", 0);
         Input.ResetInputAxes();
 
