@@ -21,7 +21,11 @@ public class StateMachine1 : MonoBehaviour {
 		if(currentState != null){
 			currentState.Reason();
 			currentState.Act();
-		}
+        }
+        else
+        {
+            Debug.Log(currentState);
+        }
 
         Debug.Log(currentState);
 		
@@ -31,6 +35,8 @@ public class StateMachine1 : MonoBehaviour {
 	/// Method om de state te wijzigen
 	/// </summary>
 	public void SetState(StateID stateID) {
+
+        
 
 		/** als we de stateID niet kennen als state: stop deze functie dan */
 		if(!states.ContainsKey(stateID))
@@ -42,7 +48,7 @@ public class StateMachine1 : MonoBehaviour {
 
 		/** we stellen de nieuwe currentState in */
 		currentState = states[stateID];
-
+        //Debug.Log(stateID);
 		/** we geven de nieuwe state de mogelijkheid om zich zelf in te stellen */
 		currentState.Enter();
 	}

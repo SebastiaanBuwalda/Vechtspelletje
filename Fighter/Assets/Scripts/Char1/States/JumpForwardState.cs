@@ -24,9 +24,10 @@ public class JumpForwardState : State1 {
 
     public override void Enter()
     {
+        anim.SetInteger("AnimState", 5);
         Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
-        anim.SetInteger("AnimState", 5);
+        
         inState = true;
 
         Debug.Log("<color=red> FORWARD JUMP ENTER </color>");

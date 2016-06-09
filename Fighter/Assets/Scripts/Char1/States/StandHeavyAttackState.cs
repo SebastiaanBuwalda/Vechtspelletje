@@ -18,15 +18,18 @@ public class StandHeavyAttackState : State1 {
     private Vector3 moveVector;
     [SerializeField]
     private GameObject hitBox;
+    private bool inState;
 
     private bool shouldMove;
 
 
     public override void Enter()
     {
+        inState = true;
         //Input.ResetInputAxes();
         anim.SetInteger("AnimState", 4);
         shouldMove = true;
+        Debug.Log("HEAVY ATTACK ENTER");
     }
 
     public override void Act()
@@ -68,22 +71,32 @@ public class StandHeavyAttackState : State1 {
 
     public override void Leave()
     {
-        
+        inState = false;
+        Debug.Log("HEAVY ATTACK LEAVE");
     }
 
     //time untill player can move again
     IEnumerator HeavyAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-        if (!Input.anyKey || Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
-            stateMachine.SetState(StateID.Idle);
-        else if(Input.GetKey(KeyCode.RightArrow))
+        if(inState)
         {
-            stateMachine.SetState(StateID.WalkForward);
+            if (!Input.anyKey || Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
+            {
+                stateMachine.SetState(StateID.Idle);
+                Input.ResetInputAxes();
+                Debug.Log("<color=green> TO IDLE FROM HEAVY ATTACK </color>");
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                stateMachine.SetState(StateID.WalkForward);
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                stateMachine.SetState(StateID.WalkBackward);
+            }
+            Input.ResetInputAxes();
         }
-        else if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            stateMachine.SetState(StateID.WalkBackward);
-        }
+        
     }
 }

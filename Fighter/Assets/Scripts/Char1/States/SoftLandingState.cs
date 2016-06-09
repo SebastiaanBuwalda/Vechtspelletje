@@ -44,7 +44,6 @@ public class SoftLandingState : State1 {
 
         if(rb.velocity != Vector3.zero)
         {
-            //Debug.Log("Locking Velocity");
             rb.velocity = Vector3.zero;
         }
     }

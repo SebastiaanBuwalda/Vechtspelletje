@@ -22,7 +22,6 @@ public class AirLightAttack : State1 {
 
     public override void Enter()
     {
-        //Debug.Log("AirLightAttack ENTER");
         anim.SetInteger("AnimState", 15);
         inState = true;
     }

@@ -44,7 +44,6 @@ public class CrouchState1 : State1 {
 		}
 		else if (!Input.anyKey) 
 		{
-            Debug.Log("From Crouch to Idle");
 			stateMachine.SetState (StateID.Idle);
 		} 
 		else if (Input.GetKeyDown (KeyCode.Z)) 

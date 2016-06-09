@@ -21,7 +21,6 @@ public class StandLightAttackState : State1 {
 
     public override void Enter()
     {
-        Debug.Log("LightAttack Enter");
         anim.SetInteger("AnimState", 3);
         Input.ResetInputAxes();
     }

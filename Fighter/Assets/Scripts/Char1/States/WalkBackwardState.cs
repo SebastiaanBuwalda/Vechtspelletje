@@ -15,14 +15,13 @@ public class WalkBackwardState : State1 {
 
     public override void Enter()
     {
-        //Debug.Log("Walk backwards state");
         anim.SetInteger("AnimState", 1);
+        //Debug.Log("<color=green> WALK BACKWARD ENTER </color>");
     }
 
     public override void Act()
     {
         transform.Translate(moveVector * Time.deltaTime);
-        //transform.Translate(new Vector3(-2, 0, 0) * Time.deltaTime);
     }
 
     public override void Reason()

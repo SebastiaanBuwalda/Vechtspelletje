@@ -18,12 +18,12 @@ public class WalkForwardState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 2);
+        Debug.Log("<color=green> WALK FORWARD ENTER </color>");
     }
 
     public override void Act()
     {
         transform.Translate(moveVector * Time.deltaTime);
-        //transform.Translate(new Vector3(2, 0, 0) * Time.deltaTime);
 		audioSource.PlayOneShot(walkingSound);
     }
 

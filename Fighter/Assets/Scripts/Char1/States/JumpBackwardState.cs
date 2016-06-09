@@ -23,9 +23,10 @@ public class JumpBackwardState : State1 {
 
     public override void Enter()
     {
+        anim.SetInteger("AnimState", 5);
         Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
-        anim.SetInteger("AnimState", 5);
+        
 
         inState = true;
 
@@ -60,7 +61,6 @@ public class JumpBackwardState : State1 {
         {
             stateMachine.SetState(StateID.Idle);
 			audioSource.PlayOneShot (jumpSound);
-
         }
     }
 
