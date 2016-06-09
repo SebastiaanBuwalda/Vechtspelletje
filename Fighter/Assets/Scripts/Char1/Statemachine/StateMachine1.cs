@@ -27,7 +27,7 @@ public class StateMachine1 : MonoBehaviour {
             Debug.Log(currentState);
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
 		
 	}
 
