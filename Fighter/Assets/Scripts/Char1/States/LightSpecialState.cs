@@ -18,8 +18,11 @@ public class LightSpecialState : State1
 	[SerializeField] private AudioClip fireballSound;
 	[SerializeField] private PositionBasedFlip positionBasedFlip;
 
+    private bool inState;
+
     public override void Enter()
     {
+        inState = true;
 		anim.SetInteger ("AnimState", 17);
     }
 
@@ -41,6 +44,8 @@ public class LightSpecialState : State1
 
     public override void Leave()
     {
+        inState = false;
+
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("L Projectile")) {
 			audioSource.PlayOneShot (fireballSound);
 			GameObject temp = ObjectPool.instance.GetObjectForType("HadoukenLight", false);
@@ -57,10 +62,14 @@ public class LightSpecialState : State1
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-		if (!Input.anyKey)
-		{
-			
-			stateMachine.SetState (StateID.Idle);
-		}
+        if(inState)
+        {
+            if (!Input.anyKey)
+            {
+
+                stateMachine.SetState(StateID.Idle);
+            }
+        }
+		
 	}
 }

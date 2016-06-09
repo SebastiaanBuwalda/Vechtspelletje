@@ -16,7 +16,6 @@ public class WalkBackwardState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 1);
-        //Debug.Log("<color=green> WALK BACKWARD ENTER </color>");
     }
 
     public override void Act()

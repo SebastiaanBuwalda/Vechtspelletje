@@ -22,12 +22,8 @@ public class StateMachine1 : MonoBehaviour {
 			currentState.Reason();
 			currentState.Act();
         }
-        else
-        {
-            Debug.Log(currentState);
-        }
 
-        //Debug.Log(currentState);
+        Debug.Log(currentState);
 		
 	}
 
@@ -48,7 +44,6 @@ public class StateMachine1 : MonoBehaviour {
 
 		/** we stellen de nieuwe currentState in */
 		currentState = states[stateID];
-        //Debug.Log(stateID);
 		/** we geven de nieuwe state de mogelijkheid om zich zelf in te stellen */
 		currentState.Enter();
 	}

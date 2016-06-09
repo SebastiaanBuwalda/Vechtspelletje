@@ -12,32 +12,24 @@ public class IdleState1 : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
 	[SerializeField] private StateFreeInputHandler inputHandler;
-<<<<<<< HEAD
     private bool inState;
     private bool leftState = true;
-=======
 	[SerializeField] private PositionBasedFlip positionBasedFlip;
-
-	private bool inState = false;
->>>>>>> 2031095f918e94ed4a62c9a66eb03c50d41b34b4
 
 
     private bool grounded;
 
     public override void Enter()
     {
-<<<<<<< HEAD
         if(leftState == true)
             anim.SetInteger("AnimState", 0);
         leftState = false;
         //Input.ResetInputAxes();
-        Debug.Log("<color=purple> IDLE ENTER </color>");
+
         inState = true;
-=======
 		positionBasedFlip.enabled = true;
         anim.SetInteger("AnimState", 0);
         Input.ResetInputAxes();
->>>>>>> 2031095f918e94ed4a62c9a66eb03c50d41b34b4
 
         if (!anim.IsInTransition(0))
         {
@@ -118,7 +110,6 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("<color=red> HEAVY ATTACK </color>");
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
 		else if (Input.GetKeyDown(KeyCode.DownArrow) && inState == true)
@@ -127,7 +118,6 @@ public class IdleState1 : State1 {
         }
         else if (Input.GetKeyDown(KeyCode.Space) && grounded == true && inState == true)
         {
-            Debug.Log("<color=blue> TO JUMP </color>");
             stateMachine.SetState(StateID.Jump);
         }
     }

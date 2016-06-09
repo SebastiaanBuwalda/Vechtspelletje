@@ -18,9 +18,11 @@ public class HeavySpecialState: State1
 	[SerializeField] private AudioClip fireballSound;
 	[SerializeField] private PositionBasedFlip positionBasedFlip;
 
+    private bool inState;
 
 	public override void Enter()
 	{
+        inState = true;
 		anim.SetInteger ("AnimState", 18);
 	}
 
@@ -42,6 +44,8 @@ public class HeavySpecialState: State1
 
 	public override void Leave()
 	{
+        inState = false;
+
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("H Projectile")) {
 			audioSource.PlayOneShot (fireballSound);
 			GameObject temp = ObjectPool.instance.GetObjectForType("HadoukenHeavy", false);
@@ -58,10 +62,14 @@ public class HeavySpecialState: State1
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-		if (!Input.anyKey)
-		{
+        if(inState)
+        {
+            if (!Input.anyKey)
+            {
 
-			stateMachine.SetState (StateID.Idle);
-		}
+                stateMachine.SetState(StateID.Idle);
+            }
+        }
+		
 	}
 }

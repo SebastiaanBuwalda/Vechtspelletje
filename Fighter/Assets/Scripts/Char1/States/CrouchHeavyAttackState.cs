@@ -14,8 +14,12 @@ public class CrouchHeavyAttackState : State1 {
 	[SerializeField] private float lockTime;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip sweepSound;
+
+    private bool inState;
+
 	public override void Enter()
 	{
+        inState = true;
         Input.ResetInputAxes();
 		anim.SetInteger("AnimState", 10);
 		audioSource.PlayOneShot (sweepSound);
@@ -36,19 +40,23 @@ public class CrouchHeavyAttackState : State1 {
 
 	public override void Leave()
 	{
-
+        inState = false;
 	}
 
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey)
+        if(inState)
         {
-            stateMachine.SetState(StateID.Idle);
-        }	
-		else if(Input.GetKey(KeyCode.DownArrow))
-		{
-			stateMachine.SetState(StateID.Crouch);
-		}
+            if (!Input.anyKey)
+            {
+                stateMachine.SetState(StateID.Idle);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                stateMachine.SetState(StateID.Crouch);
+            }
+        }
+		
 	}
 }

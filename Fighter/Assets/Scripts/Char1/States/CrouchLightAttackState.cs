@@ -11,8 +11,12 @@ public class CrouchLightAttackState : State1 {
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
 	[SerializeField] private float lockTime;
+
+    private bool inState;
+
     public override void Enter()
     {
+        inState = true;
 		anim.SetInteger("AnimState", 9);
     }
 
@@ -34,20 +38,24 @@ public class CrouchLightAttackState : State1 {
 
     public override void Leave()
     {
-        
+        inState = false;
     }
 
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey)
+        if(inState)
         {
-            Input.ResetInputAxes();
-            stateMachine.SetState(StateID.Idle);
-        }	
-		else if(Input.GetKey(KeyCode.DownArrow))
-		{
-			stateMachine.SetState(StateID.Crouch);
-		}
+            if (!Input.anyKey)
+            {
+                Input.ResetInputAxes();
+                stateMachine.SetState(StateID.Idle);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                stateMachine.SetState(StateID.Crouch);
+            }
+        }
+		
 	}
 }

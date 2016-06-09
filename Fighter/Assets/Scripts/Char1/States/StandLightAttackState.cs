@@ -15,12 +15,15 @@ public class StandLightAttackState : State1 {
     [SerializeField]
     private float lockTime;
 
+    private bool inState;
+
     [SerializeField]
     private GameObject hitBox;
 
 
     public override void Enter()
     {
+        inState = true;
         anim.SetInteger("AnimState", 3);
         Input.ResetInputAxes();
     }
@@ -40,7 +43,7 @@ public class StandLightAttackState : State1 {
 
     public override void Leave()
     {
-        
+        inState = false;   
     }
 
     void ActivateLightHitbox()
@@ -59,15 +62,18 @@ public class StandLightAttackState : State1 {
     IEnumerator LightAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-		if(!Input.anyKey||Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
-            stateMachine.SetState(StateID.Idle);
-        else if(Input.GetKey(KeyCode.LeftArrow))
+        if(inState)
         {
-            stateMachine.SetState(StateID.WalkBackward);
-        }
-        else if(Input.GetKey(KeyCode.RightArrow))
-        {
-            stateMachine.SetState(StateID.WalkForward);
+            if (!Input.anyKey || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
+                stateMachine.SetState(StateID.Idle);
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                stateMachine.SetState(StateID.WalkBackward);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                stateMachine.SetState(StateID.WalkForward);
+            }
         }
     }
 }

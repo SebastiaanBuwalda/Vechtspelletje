@@ -30,17 +30,12 @@ public class JumpState : State1 {
 
     public override void Enter()
     {
-<<<<<<< HEAD
         anim.SetInteger("AnimState", 5);
-=======
 		positionBasedFlip.enabled = false;
->>>>>>> 2031095f918e94ed4a62c9a66eb03c50d41b34b4
         Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
         
         inState = true;
-
-        Debug.Log("<color=red> NEUTRAL JUMP ENTER </color>");
     }
     
     public override void Act()
@@ -50,7 +45,6 @@ public class JumpState : State1 {
 
     public override void Reason()
     {
-        Debug.Log("JUMP STATE REASON");
         anim.SetInteger("AnimState", 5);
         //cap max jump velocity
         if(rb.velocity.y > 12.7f)
@@ -70,8 +64,6 @@ public class JumpState : State1 {
     {
         if(coll.gameObject.tag == "Floor" && inState == true)
         {
-            
-            Debug.Log("GO BACK TO IDLE FROM JUMP");
             stateMachine.SetState(StateID.Idle);
 			audioSource.PlayOneShot (jumpSound);
         }
