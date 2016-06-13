@@ -53,6 +53,7 @@ public class CrouchLightAttackState : State1 {
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
+                //Debug.Log("Go back to crouch");
                 stateMachine.SetState(StateID.Crouch);
             }
         }

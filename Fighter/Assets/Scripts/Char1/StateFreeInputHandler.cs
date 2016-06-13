@@ -15,7 +15,7 @@ public class StateFreeInputHandler : MonoBehaviour
 
 	void Awake()
 	{
-		print (positionBasedFlip.FacingLeft);
+		//print (positionBasedFlip.FacingLeft);
 	}
 
 	public bool returnHadouken()

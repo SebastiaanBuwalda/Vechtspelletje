@@ -18,7 +18,6 @@ public class WalkForwardState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 2);
-        Debug.Log("<color=green> WALK FORWARD ENTER </color>");
     }
 
     public override void Act()

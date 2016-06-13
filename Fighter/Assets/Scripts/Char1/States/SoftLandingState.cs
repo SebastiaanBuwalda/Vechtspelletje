@@ -95,7 +95,7 @@ public class SoftLandingState : State1 {
         }
         else if (!Input.anyKey)
         {
-            Debug.Log("GO BACK TO IDLE FROM LANDING");
+            //Debug.Log("GO BACK TO IDLE FROM LANDING");
             stateMachine.SetState(StateID.Idle);
         }
     }
