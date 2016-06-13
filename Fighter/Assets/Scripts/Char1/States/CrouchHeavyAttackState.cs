@@ -20,7 +20,6 @@ public class CrouchHeavyAttackState : State1 {
 	public override void Enter()
 	{
         inState = true;
-        Input.ResetInputAxes();
 		anim.SetInteger("AnimState", 10);
 		audioSource.PlayOneShot (sweepSound);
 	}
@@ -48,14 +47,16 @@ public class CrouchHeavyAttackState : State1 {
 		yield return new WaitForSeconds(lockTime);
         if(inState)
         {
-            if (!Input.anyKey)
-            {
-                stateMachine.SetState(StateID.Idle);
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                stateMachine.SetState(StateID.Crouch);
-            }
+			if (Input.GetAxis("Vertical")>=0)
+			{
+				//Input.ResetInputAxes();
+				stateMachine.SetState(StateID.Idle);
+			}
+			else if (Input.GetAxis("Vertical")<0)
+			{
+				//Debug.Log("Go back to crouch");
+				stateMachine.SetState(StateID.Crouch);
+			}
         }
 		
 	}

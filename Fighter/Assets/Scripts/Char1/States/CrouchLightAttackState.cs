@@ -27,13 +27,10 @@ public class CrouchLightAttackState : State1 {
 
     public override void Reason()
     {
-		if(!Input.GetKeyDown(KeyCode.Z))
-		{
 			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch punch"))
 			{
 				StartCoroutine(LightAtkLockTime());
 			}
-		}
     }
 
     public override void Leave()
@@ -46,12 +43,12 @@ public class CrouchLightAttackState : State1 {
 		yield return new WaitForSeconds(lockTime);
         if(inState)
         {
-            if (!Input.anyKey)
+			if (Input.GetAxis("Vertical")>=0)
             {
-                Input.ResetInputAxes();
+                //Input.ResetInputAxes();
                 stateMachine.SetState(StateID.Idle);
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
+			else if (Input.GetAxis("Vertical")<0)
             {
                 //Debug.Log("Go back to crouch");
                 stateMachine.SetState(StateID.Crouch);
