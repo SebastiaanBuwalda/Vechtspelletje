@@ -28,19 +28,15 @@ public class IdleState1 : State1 {
 
         inState = true;
 		positionBasedFlip.enabled = true;
-        anim.SetInteger("AnimState", 0);
         Input.ResetInputAxes();
-
-        if (!anim.IsInTransition(0))
-        {
-            ReadInputs();
-        }
     }
 
     public override void Act()
     {
         if (!anim.IsInTransition(0))
+        {
             ReadInputs();
+        }
     }
 
     public override void Reason()

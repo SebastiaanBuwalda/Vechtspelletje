@@ -33,11 +33,12 @@ public class CrouchState1 : State1 {
 
     public override void Leave()
     {
-       
+        Debug.Log("Leaving Crouch");
     }
 
 	void ReadInputs()
 	{
+        
 		if (inputHandler.returnHadouken ())
 		{
 			stateMachine.SetState (StateID.LightSpecial);
@@ -48,14 +49,19 @@ public class CrouchState1 : State1 {
 		} 
 		else if (Input.GetButtonDown("A"))
 		{
-			stateMachine.SetState (StateID.CrouchLightAttack);
 			stateMachine.SetState(StateID.CrouchLightAttack);
 		}
 		else if (Input.GetButtonDown("B"))
 		{
             //Input.ResetInputAxes();
-			stateMachine.SetState (StateID.CrouchHeavyAttack);
 			stateMachine.SetState(StateID.CrouchHeavyAttack);
-		}
+		}else if(Input.GetAxis("Horizontal")> 0.2f)
+        {
+            stateMachine.SetState(StateID.WalkForward);
+        }
+        else if(Input.GetAxis("Horizontal")< -0.2f)
+        {
+            stateMachine.SetState(StateID.WalkBackward);
+        }
 	}
 }
