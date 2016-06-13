@@ -77,21 +77,13 @@ public class JumpState : State1 {
 
     void ReadInputs()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetButtonDown("A"))
         {
             stateMachine.SetState(StateID.AirLightAttack);
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+		else if (Input.GetButtonDown("B"))
         {
             stateMachine.SetState(StateID.AirHeavyAttack);
-        }
-        else if(Input.GetKey(KeyCode.Space))
-        {
-            anim.SetInteger("AnimState", 5);
-        }
-        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            anim.SetInteger("AnimState", 5);
         }
     }
 }

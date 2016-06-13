@@ -29,22 +29,22 @@ public class WalkBackwardState : State1 {
 		if (hadouken.GetInput ())
 		{
 			stateMachine.SetState (StateID.LightSpecial);
-		}else if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+		}else if(Input.GetAxis("Horizontal")==0)
         {
             stateMachine.SetState(StateID.Idle);
-        }else if(!Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+		}else if(Input.GetAxis("Horizontal")>0)
         {
             stateMachine.SetState(StateID.WalkForward);
         }
-        else if(Input.GetKey(KeyCode.Z))
+		else if(Input.GetButtonDown("A"))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        else if(Input.GetKeyDown(KeyCode.X))
+		else if(Input.GetButtonDown("B"))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-        else if(Input.GetKeyDown(KeyCode.Space))
+		else if(Input.GetButtonDown("X"))
         {
             stateMachine.SetState(StateID.JumpBackward);
         }

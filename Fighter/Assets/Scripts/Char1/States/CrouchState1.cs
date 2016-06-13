@@ -42,18 +42,26 @@ public class CrouchState1 : State1 {
 		{
 			stateMachine.SetState (StateID.LightSpecial);
 		}
-		else if (!Input.anyKey) 
+		else if (Input.GetAxis("Vertical")==0) 
 		{
 			stateMachine.SetState (StateID.Idle);
 		} 
-		else if (Input.GetKeyDown (KeyCode.Z)) 
+		else if (Input.GetButtonDown("A"))
 		{
+<<<<<<< HEAD
 			stateMachine.SetState (StateID.CrouchLightAttack);
+=======
+			stateMachine.SetState(StateID.CrouchLightAttack);
+>>>>>>> abc6027324aaedc35212965fb8754606580f3c22
 		}
-		else if (Input.GetKeyDown (KeyCode.X)) 
+		else if (Input.GetButtonDown("B"))
 		{
+<<<<<<< HEAD
             //Input.ResetInputAxes();
 			stateMachine.SetState (StateID.CrouchHeavyAttack);
+=======
+			stateMachine.SetState(StateID.CrouchHeavyAttack);
+>>>>>>> abc6027324aaedc35212965fb8754606580f3c22
 		}
 	}
 }
