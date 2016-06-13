@@ -12,15 +12,6 @@ public class StateFreeInputHandler : MonoBehaviour
 	[SerializeField]
 	private PositionBasedFlip positionBasedFlip;
 
-<<<<<<< HEAD
-
-	void Awake()
-	{
-		//print (positionBasedFlip.FacingLeft);
-	}
-
-=======
->>>>>>> abc6027324aaedc35212965fb8754606580f3c22
 	public bool returnHadouken()
 	{
 		if (positionBasedFlip.FacingLeft==false) 
@@ -46,6 +37,7 @@ public class StateFreeInputHandler : MonoBehaviour
 				return false;
 			}
 		}
+		return false;
 	}
 
 	public bool returnHadoukenHeavy()
@@ -66,5 +58,7 @@ public class StateFreeInputHandler : MonoBehaviour
 				return false;
 			}
 		}
+		return false;
+
 	}
 }
