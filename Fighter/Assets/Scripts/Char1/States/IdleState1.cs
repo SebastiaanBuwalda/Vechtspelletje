@@ -109,7 +109,7 @@ public class IdleState1 : State1 {
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-		else if (((Input.GetAxis("Vertical")<0)) && inState == true)
+		else if (((Input.GetAxis("Vertical")< -0.1)) && inState == true)
 		{
 			stateMachine.SetState (StateID.Crouch);
         }

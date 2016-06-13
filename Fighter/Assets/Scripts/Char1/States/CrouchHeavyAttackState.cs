@@ -33,7 +33,7 @@ public class CrouchHeavyAttackState : State1 {
 	{
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch kick") && !anim.IsInTransition(0))
         {
-            StartCoroutine(LightAtkLockTime());
+            StartCoroutine(HeavyAtkLockTime());
         }
 	}
 
@@ -42,7 +42,7 @@ public class CrouchHeavyAttackState : State1 {
         inState = false;
 	}
 
-	IEnumerator LightAtkLockTime()
+	IEnumerator HeavyAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
         if(inState)
