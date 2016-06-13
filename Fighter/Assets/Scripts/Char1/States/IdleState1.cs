@@ -94,31 +94,33 @@ public class IdleState1 : State1 {
 		{
 			stateMachine.SetState (StateID.HeavySpecial);
 		}
-        else if (Input.GetKey(KeyCode.LeftArrow))
+		else if (Input.GetAxis("Horizontal")<0)
         {
             //walk left
             stateMachine.SetState(StateID.WalkBackward);
+
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+		else if (Input.GetAxis("Horizontal")>0)
         {
             //walk right
             stateMachine.SetState(StateID.WalkForward);
         }
-        else if (Input.GetKeyDown(KeyCode.Z))
+		else if (Input.GetButtonDown("A"))
         {
             stateMachine.SetState(StateID.StandLightAttack);
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+		else if (Input.GetButtonDown("B"))
         {
             stateMachine.SetState(StateID.StandHeavyAttack);
         }
-		else if (Input.GetKeyDown(KeyCode.DownArrow) && inState == true)
+		else if (((Input.GetAxis("Vertical")<0)) && inState == true)
 		{
 			stateMachine.SetState (StateID.Crouch);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && grounded == true && inState == true)
+		else if (Input.GetButtonDown("X") && grounded == true && inState == true)
         {
             stateMachine.SetState(StateID.Jump);
         }
+			
     }
 }

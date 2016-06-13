@@ -1,40 +1,35 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class StateFreeInputHandler : MonoBehaviour 
 {
-	private FightingInput hadouken = new FightingInput(new string[] { "down","right", "Fire1"});
-	private FightingInput hadoukenHeavy = new FightingInput(new string[] { "down","right", "Fire2"});
+	private FightingInput hadouken = new FightingInput(new string[] { "down","right", "A"});
+	private FightingInput hadoukenHeavy = new FightingInput(new string[] { "down","right", "B"});
 
-	private FightingInput hadoukenL = new FightingInput(new string[] { "down","left", "Fire1"});
-	private FightingInput hadoukenHeavyL = new FightingInput(new string[] { "down","left", "Fire2"});
+	private FightingInput hadoukenL = new FightingInput(new string[] { "down","left", "A"});
+	private FightingInput hadoukenHeavyL = new FightingInput(new string[] { "down","left", "B"});
 
 	[SerializeField]
 	private PositionBasedFlip positionBasedFlip;
 
-
-	void Awake()
-	{
-		print (positionBasedFlip.FacingLeft);
-	}
-
 	public bool returnHadouken()
 	{
-		if (!positionBasedFlip.FacingLeft) 
+		if (positionBasedFlip.FacingLeft==false) 
 			{
 			if (hadouken.GetInput ()) 
 			{
 				return true;
 			} 
-			else 
+			else  
 			{
 				return false;
 			}
 		} 
-		else 
+		else if (positionBasedFlip.FacingLeft==true)
 		{
 			if (hadoukenL.GetInput ()) 
 			{
+				print ("LHL");
 				return true;
 			}
 			else 
@@ -44,19 +39,17 @@ public class StateFreeInputHandler : MonoBehaviour
 		}
 	}
 
-
-	
-
 	public bool returnHadoukenHeavy()
 	{
-		if (!positionBasedFlip.FacingLeft) {
+		if (positionBasedFlip.FacingLeft==false) 
+		{
 			if (hadoukenHeavy.GetInput ()) {
 				return true;
 			} else {
 				return false;
 			}
 		} 
-		else 
+		else if (positionBasedFlip.FacingLeft==true)
 		{
 			if (hadoukenHeavyL.GetInput ()) {
 				return true;

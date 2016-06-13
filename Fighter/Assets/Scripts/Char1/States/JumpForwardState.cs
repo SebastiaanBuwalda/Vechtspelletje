@@ -66,13 +66,13 @@ public class JumpForwardState : State1 {
 
     void ReadInputs()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            stateMachine.SetState(StateID.AirLightAttack);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            stateMachine.SetState(StateID.AirHeavyAttack);
-        }
+		if (Input.GetButtonDown("A"))
+		{
+			stateMachine.SetState(StateID.AirLightAttack);
+		}
+		else if (Input.GetButtonDown("B"))
+		{
+			stateMachine.SetState(StateID.AirHeavyAttack);
+		}
     }
 }
