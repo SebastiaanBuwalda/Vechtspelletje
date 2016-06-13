@@ -11,7 +11,7 @@ public class WalkForwardState : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
     [SerializeField] private Vector3 moveVector;
-	[SerializeField] private StateFreeInputHandler inputHandler;
+	[SerializeField] private StateBasedInputs inputHandler;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip walkingSound;
 
@@ -29,9 +29,13 @@ public class WalkForwardState : State1 {
     public override void Reason()
     {
         anim.SetInteger("AnimState", 2);
-		if (inputHandler.returnHadouken ()) 
+		if (inputHandler.AskForLightAttack()) 
 		{
 			stateMachine.SetState (StateID.LightSpecial);
+		}
+		else if (inputHandler.AskForHeavyAttack ())
+		{
+			stateMachine.SetState (StateID.HeavySpecial);
 		}
 		else if ((Input.GetAxis("Horizontal")==0))
         {
