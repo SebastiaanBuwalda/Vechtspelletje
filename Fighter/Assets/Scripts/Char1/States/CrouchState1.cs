@@ -45,6 +45,7 @@ public class CrouchState1 : State1 {
 		}
 		else if (Input.GetAxis("Vertical")==0) 
 		{
+            Input.ResetInputAxes();
 			stateMachine.SetState (StateID.Idle);
 		} 
 		else if (Input.GetButtonDown("A"))

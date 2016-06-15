@@ -61,7 +61,14 @@ public class JumpBackwardState : State1 {
         {
             stateMachine.SetState(StateID.Idle);
 			audioSource.PlayOneShot (jumpSound);
+            SpawnDust();
         }
+    }
+
+    void SpawnDust()
+    {
+        GameObject prtcl = ObjectPool.instance.GetObjectForType("LandParticles", true);
+        prtcl.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     void ReadInputs()
