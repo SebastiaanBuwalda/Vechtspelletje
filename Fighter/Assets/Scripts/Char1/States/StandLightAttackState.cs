@@ -15,36 +15,65 @@ public class StandLightAttackState : State1 {
     [SerializeField]
     private float lockTime;
 
+    private bool inState;
+
+    [SerializeField]
+    private GameObject hitBox;
+
 
     public override void Enter()
     {
-        print("standing light attack enter");
+        inState = true;
         anim.SetInteger("AnimState", 3);
+        Input.ResetInputAxes();
     }
 
     public override void Act()
     {
-        
+
     }
 
     public override void Reason()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("L punch") && !anim.IsInTransition(0))
         {
-            Debug.Log("LIGHT ATTACK FINISGED");
             StartCoroutine(LightAtkLockTime());
         }
     }
 
     public override void Leave()
     {
-        
+        inState = false;   
+    }
+
+    void ActivateLightHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(true);
+    }
+
+    void DeactivateLightHitbox()
+    {
+        //this method is called via animation event
+        hitBox.SetActive(false);
     }
 
     //time untill player can move again
     IEnumerator LightAtkLockTime()
     {
         yield return new WaitForSeconds(lockTime);
-        stateMachine.SetState(StateID.Idle);
+        if(inState)
+        {
+            if (!Input.anyKey || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
+                stateMachine.SetState(StateID.Idle);
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                stateMachine.SetState(StateID.WalkBackward);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                stateMachine.SetState(StateID.WalkForward);
+            }
+        }
     }
 }

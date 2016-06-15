@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour, IHealth {
     }
 
     //code for testing purposes 
-
+    
     public void ChangeHealth(int damage)
     {
         //this functions should be called from a delegate

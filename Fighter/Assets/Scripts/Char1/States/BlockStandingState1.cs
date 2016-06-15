@@ -8,23 +8,37 @@ using System.Collections;
 
 public class BlockStandingState1 : State1 {
 
+    private bool blocking;
+    private StateMachine1 stateMachine;
+    
     public override void Enter()
     {
-        base.Enter();
+        stateMachine = gameObject.GetComponent<StateMachine1>();
+        StartCoroutine(Block());
+
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Leave()
     {
-        base.Leave();
+
+    }
+     IEnumerator Block()
+    {
+        if (blocking == true)
+        {
+            yield return new WaitForEndOfFrame();
+
+        }
+        yield return new WaitForEndOfFrame();
+
+        stateMachine.SetState(StateID.Idle);
     }
 }

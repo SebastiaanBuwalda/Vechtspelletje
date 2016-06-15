@@ -3,10 +3,9 @@ using System.Collections;
 
 public abstract class State1 : MonoBehaviour {
 
-    
+
 	public virtual void Enter ()
 	{
-
 	}
 
 	public virtual void Leave ()

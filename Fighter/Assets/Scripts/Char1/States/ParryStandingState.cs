@@ -8,35 +8,57 @@ using System.Collections;
  */
 
 public class ParryStandingState : State1 {
-    private float ParryLength;
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private float parryWindow;
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    private bool inState;
+    private bool release;
+    private bool blocking;
+
+
 
     public override void Enter()
     {
-        ParryLength = 2;
-        StartCoroutine(FullParry());
+        inState = true;
+        anim.SetInteger("AnimState", 19);
+        blocking = false;
+        parryWindow = 1f;
+        StartCoroutine(ParryBlockTime());
+
     }
 
     public override void Act()
     {
-            
     }
 
     public override void Reason()
     {
-            
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            blocking = true;
+        }
+      
     }
 
     public override void Leave()
     {
-
+        inState = false;
+        Debug.Log("leave");
     }
-
-    IEnumerator FullParry()
+    
+    IEnumerator ParryBlockTime()
     {
-        
-        
+        //succesfull parry
 
-        
-        yield return new WaitForSeconds(ParryLength);
+        Debug.Log("parry");
+        yield return new WaitForSeconds(parryWindow);
+        //just blocking
+        Debug.Log("block");
+
+        yield return new WaitForEndOfFrame();
+        stateMachine.SetState(StateID.StandBlock);
     }
 }

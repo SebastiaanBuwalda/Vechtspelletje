@@ -18,23 +18,26 @@ public class StateMachine1 : MonoBehaviour {
         get { return currIdInt; }
         set { currIdInt = value; }
     }
-	/** een verwijzing naar de huidige staat waarin we verkeren */
-	private State1 currentState;
-  
-    
+    /** een verwijzing naar de huidige staat waarin we verkeren */
+    private State1 currentState;
 	
 	void Update () {
 		// als we een state hebben: uitvoeren die hap
 		if(currentState != null){
 			currentState.Reason();
 			currentState.Act();
-		}
+        }
+
+        Debug.Log(currentState);
+		
 	}
 
 	/// <summary>
 	/// Method om de state te wijzigen
 	/// </summary>
 	public void SetState(StateID stateID) {
+
+        
 
 		/** als we de stateID niet kennen als state: stop deze functie dan */
 		if(!states.ContainsKey(stateID))
@@ -43,11 +46,11 @@ public class StateMachine1 : MonoBehaviour {
 		/** als we ons al in een state bevinden: geef de state de mogelijkheid zich op te ruimen */
 		if(currentState != null)
 			currentState.Leave();
-
-		/** we stellen de nieuwe currentState in */
-		currentState = states[stateID];
+        currentState = states[stateID];
         currIdInt = (int)stateID;
         Debug.Log(currIdInt);
+        /** we stellen de nieuwe currentState in */
+        currentState = states[stateID];
 		/** we geven de nieuwe state de mogelijkheid om zich zelf in te stellen */
 		currentState.Enter();
 	}
@@ -63,5 +66,4 @@ public class StateMachine1 : MonoBehaviour {
 		states.Add( stateID, state );
 	}
 
-   
 }

@@ -3,7 +3,7 @@ public class FightingInput
 {
 	public string[] buttons;
 	private int currentIndex = 0;
-	private float allowedTimeBetweenButtons = 0.4f;
+	private float allowedTimeBetweenButtons = 0.3f;
 	//Use this float to define how much time there is allowed between the inputs
 	private float timeLastButtonPressed;
 	public FightingInput(string[] _buttonsPushed)

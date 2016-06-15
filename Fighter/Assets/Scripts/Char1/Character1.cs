@@ -32,13 +32,15 @@ public enum StateID
     JumpForward = 25,
     JumpBackward = 26
 }
-    
 
-   
+public class Character1 : MonoBehaviour
+{
 
-public class Character1 : MonoBehaviour {
     private List<int> hittableStates = new List<int>();
     private List<int> ParryAbleStates = new List<int>();
+    private List<int> ParryStates = new List<int>();
+    private IHealth IThisObjectHealth;
+    private Icharacter Ienemy;
 
 
 
@@ -47,6 +49,7 @@ public class Character1 : MonoBehaviour {
     void Start()
     {
         
+        IThisObjectHealth = gameObject.GetComponent<IHealth>();
         //change to inspector later
         stateMachine = GetComponent<StateMachine1>();
 
@@ -60,9 +63,9 @@ public class Character1 : MonoBehaviour {
         //code to test the onhit function
         if (Input.GetKeyDown(KeyCode.K))
         {
-            OnGetHit(2);
+            OnGetHit(2, gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             StartParry();
         }
@@ -94,8 +97,12 @@ public class Character1 : MonoBehaviour {
         hittableStates.Add((int)StateID.JumpBackward);
 
         stateMachine.AddState(StateID.StandParry, GetComponent<ParryStandingState>());
+        ParryStates.Add((int)StateID.StandParry);
+
         stateMachine.AddState(StateID.StandBlock, GetComponent<BlockStandingState1>());
         stateMachine.AddState(StateID.CrouchParry, GetComponent<ParryCrouchState>());
+        ParryStates.Add((int)StateID.CrouchParry);
+
         stateMachine.AddState(StateID.CrouchBlock, GetComponent<BlockCrouchState1>());
         stateMachine.AddState(StateID.Crouch, GetComponent<CrouchState1>());
         hittableStates.Add((int)StateID.Crouch);
@@ -144,35 +151,57 @@ public class Character1 : MonoBehaviour {
         stateMachine.AddState(StateID.LayingDown, GetComponent<LayingState>());
     }
 
-  //code by Kappert
+    //code by Kappert
     //call this function when hit and if the player does not parry the atack
-    void OnGetHit(int damage)
+    public void OnGetHit(int damage,GameObject enemy)
     {
+
+        if (ParryStates.Contains(stateMachine.CurrIdInt))
+        {
+            //parry other player
+            Ienemy = enemy.GetComponent<Icharacter>();
+            Ienemy.OnGetHit(damage,gameObject);           
+        }
         if (hittableStates.Contains(stateMachine.CurrIdInt))
         {
-            //call the functions to activate the functions for when you get hit
-            stateMachine.SetState(StateID.Hitstun);
-            Debug.Log("FLIKKER OP");
+            
+          
+            if (!ParryAbleStates.Contains(stateMachine.CurrIdInt))
+            {
+                //code for taking a hit
+
+                stateMachine.SetState(StateID.Hitstun);
+                IThisObjectHealth.ChangeHealth(damage);
+                Debug.Log("no parry");
+            }
+
+            
         }
     }
 
     void StartParry()
     {
+      //  Debug.Log("parry");
         //see if the player is currantly able to parry and if so chooses which parry state to switch to
-        if (ParryAbleStates.Contains(stateMachine.CurrIdInt)) 
+        if (ParryAbleStates.Contains(stateMachine.CurrIdInt))
         {
             if (stateMachine.CurrIdInt == (int)StateID.Crouch)
             {
+                //change this to succesful parry
                 stateMachine.SetState(StateID.CrouchParry);
             }
             else
             {
+                //change this to succesful parry
+
                 stateMachine.SetState(StateID.StandParry);
             }
 
-            
+
         }
 
     }
+
+
     //end code by Kappert
 }

@@ -13,39 +13,85 @@ public class JumpState : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 jumpVector;
+    [SerializeField] private Animator anim;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip jumpSound;
+	[SerializeField] private PositionBasedFlip positionBasedFlip;
+
+    private bool inState;
+
+    private Vector3 maxJumpVel = new Vector3(0, 12.7f, 0);
 
     void Start()
     {
-        //stateMachine = GetComponent<StateMachine1>();
+
         Physics.gravity = new Vector3(0, -25, 0);
     }
 
     public override void Enter()
     {
-        Debug.Log("Enter Jump State");
+        anim.SetInteger("AnimState", 5);
+		positionBasedFlip.enabled = false;
+        Input.ResetInputAxes();
         rb.AddForce(jumpVector, ForceMode.Impulse);
+        
+        inState = true;
     }
     
     public override void Act()
     {
-        
+        anim.SetInteger("AnimState", 5);
     }
 
     public override void Reason()
     {
-        
+        anim.SetInteger("AnimState", 5);
+        //cap max jump velocity
+        if(rb.velocity.y > 12.7f)
+        {
+            rb.velocity = maxJumpVel;
+        }
+
+        ReadInputs();
     }
 
     public override void Leave()
     {
-        
+        inState = false;
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        if(coll.gameObject.tag == "Floor")
+        if(coll.gameObject.tag == "Floor" && inState == true)
         {
             stateMachine.SetState(StateID.Idle);
+			audioSource.PlayOneShot (jumpSound);
+        }
+    }
+
+    void Update()
+    {
+        if(inState)
+            anim.SetInteger("AnimState", 5);
+    }
+
+    void ReadInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            stateMachine.SetState(StateID.AirLightAttack);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            stateMachine.SetState(StateID.AirHeavyAttack);
+        }
+        else if(Input.GetKey(KeyCode.Space))
+        {
+            anim.SetInteger("AnimState", 5);
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("AnimState", 5);
         }
     }
 }
