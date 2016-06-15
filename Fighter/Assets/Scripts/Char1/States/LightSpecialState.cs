@@ -62,9 +62,9 @@ public class LightSpecialState : State1
 	IEnumerator LightAtkLockTime()
 	{
 		yield return new WaitForSeconds(lockTime);
-        if(inState)
+		if(inState)
+		if (!Input.anyKey||Input.GetButton("A"))
         {
-            if (!Input.anyKey)
             {
 
                 stateMachine.SetState(StateID.Idle);

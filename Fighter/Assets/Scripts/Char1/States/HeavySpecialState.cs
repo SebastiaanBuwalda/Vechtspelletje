@@ -64,7 +64,7 @@ public class HeavySpecialState: State1
 		yield return new WaitForSeconds(lockTime);
         if(inState)
         {
-            if (!Input.anyKey)
+			if (!Input.anyKey||Input.GetButton("B"))
             {
 
                 stateMachine.SetState(StateID.Idle);

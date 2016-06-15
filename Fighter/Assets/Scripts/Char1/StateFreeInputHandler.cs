@@ -11,10 +11,9 @@ public class StateFreeInputHandler : MonoBehaviour
 
 	[SerializeField]
 	private PositionBasedFlip positionBasedFlip;
-
 	public bool returnHadouken()
 	{
-		if (positionBasedFlip.FacingLeft==false) 
+		if (!positionBasedFlip.FacingLeft) 
 			{
 			if (hadouken.GetInput ()) 
 			{
@@ -25,11 +24,11 @@ public class StateFreeInputHandler : MonoBehaviour
 				return false;
 			}
 		} 
-		else if (positionBasedFlip.FacingLeft==true)
+		else if (positionBasedFlip.FacingLeft)
 		{
 			if (hadoukenL.GetInput ()) 
 			{
-				print ("LHL");
+				Debug.Log ("hal");
 				return true;
 			}
 			else 
@@ -50,7 +49,7 @@ public class StateFreeInputHandler : MonoBehaviour
 				return false;
 			}
 		} 
-		else if (positionBasedFlip.FacingLeft==true)
+		if (positionBasedFlip.FacingLeft==true)
 		{
 			if (hadoukenHeavyL.GetInput ()) {
 				return true;

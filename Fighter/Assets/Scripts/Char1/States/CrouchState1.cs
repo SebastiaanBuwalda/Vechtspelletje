@@ -10,7 +10,7 @@ public class CrouchState1 : State1 {
 
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
-	[SerializeField] private StateFreeInputHandler inputHandler;
+	[SerializeField] private StateBasedInputs inputHandler;
 
 
     public override void Enter()
@@ -24,7 +24,7 @@ public class CrouchState1 : State1 {
 
     public override void Reason()
     {
-		
+
         if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch Up"))
         {
             ReadInputs();
@@ -38,16 +38,19 @@ public class CrouchState1 : State1 {
 
 	void ReadInputs()
 	{
-        
-		if (inputHandler.returnHadouken ())
+		if (inputHandler.AskForLightAttack()) 
 		{
 			stateMachine.SetState (StateID.LightSpecial);
 		}
-		else if (Input.GetAxis("Vertical")==0) 
+		else if (inputHandler.AskForHeavyAttack ())
+		{
+			stateMachine.SetState (StateID.HeavySpecial);
+		}
+		else if (Input.GetAxis("Vertical")==0)
 		{
             Input.ResetInputAxes();
 			stateMachine.SetState (StateID.Idle);
-		} 
+		}
 		else if (Input.GetButtonDown("A"))
 		{
 			stateMachine.SetState(StateID.CrouchLightAttack);

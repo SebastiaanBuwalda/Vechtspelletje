@@ -11,7 +11,7 @@ public class IdleState1 : State1 {
     [SerializeField] private StateMachine1 stateMachine;
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
-	[SerializeField] private StateFreeInputHandler inputHandler;
+	[SerializeField] private StateBasedInputs inputHandler;
     private bool inState;
     private bool leftState = true;
 	[SerializeField] private PositionBasedFlip positionBasedFlip;
@@ -82,11 +82,11 @@ public class IdleState1 : State1 {
 
     void ReadInputs()
     {
-		if (inputHandler.returnHadouken ())
+		if (inputHandler.AskForLightAttack ())
         {
 			stateMachine.SetState (StateID.LightSpecial);
 		}
-		else if (inputHandler.returnHadoukenHeavy ())
+		else if (inputHandler.AskForHeavyAttack ())
 		{
 			stateMachine.SetState (StateID.HeavySpecial);
 		}
