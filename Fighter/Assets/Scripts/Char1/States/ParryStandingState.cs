@@ -24,8 +24,7 @@ public class ParryStandingState : State1 {
     {
         inState = true;
         anim.SetInteger("AnimState", 19);
-        blocking = false;
-        parryWindow = 1f;
+        parryWindow = 0.5f;
         StartCoroutine(ParryBlockTime());
 
     }
@@ -36,27 +35,21 @@ public class ParryStandingState : State1 {
 
     public override void Reason()
     {
-        if (Input.GetKeyUp(KeyCode.I))
-        {
-            blocking = true;
-        }
+      
       
     }
 
     public override void Leave()
     {
         inState = false;
-        Debug.Log("leave");
     }
     
     IEnumerator ParryBlockTime()
     {
         //succesfull parry
 
-        Debug.Log("parry");
         yield return new WaitForSeconds(parryWindow);
         //just blocking
-        Debug.Log("block");
 
         yield return new WaitForEndOfFrame();
         stateMachine.SetState(StateID.StandBlock);

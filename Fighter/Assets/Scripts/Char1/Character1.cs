@@ -69,6 +69,9 @@ public class Character1 : MonoBehaviour
         {
             StartParry();
         }
+        if (stateMachine.CurrIdInt == (int)StateID.Crouch)
+            Debug.Log("crouch");
+
     }
 
     void MakeStates()
@@ -187,17 +190,16 @@ public class Character1 : MonoBehaviour
         {
             if (stateMachine.CurrIdInt == (int)StateID.Crouch)
             {
+                Debug.Log("Crouch Parry");
                 //change this to succesful parry
                 stateMachine.SetState(StateID.CrouchParry);
             }
-            else
+            if(stateMachine.CurrIdInt == (int)StateID.Idle)
             {
                 //change this to succesful parry
 
                 stateMachine.SetState(StateID.StandParry);
             }
-
-
         }
 
     }

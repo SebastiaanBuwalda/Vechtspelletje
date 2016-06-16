@@ -14,31 +14,46 @@ public class BlockStandingState1 : State1 {
     public override void Enter()
     {
         stateMachine = gameObject.GetComponent<StateMachine1>();
+        blocking = true;
         StartCoroutine(Block());
+
 
     }
 
     public override void Act()
     {
+        if (!Input.GetKey(KeyCode.U))
+        {
+            blocking = false;
+        }
     }
 
     public override void Reason()
     {
+      
     }
 
     public override void Leave()
     {
 
     }
-     IEnumerator Block()
+    IEnumerator Block()
     {
-        if (blocking == true)
+        while (blocking == true)
         {
+            //   Debug.Log("blocking");
             yield return new WaitForEndOfFrame();
+            Debug.Log("stay blocking");
 
         }
-        yield return new WaitForEndOfFrame();
 
-        stateMachine.SetState(StateID.Idle);
+
+            yield return new WaitForEndOfFrame();
+            Debug.Log("leave blocking");
+
+            stateMachine.SetState(StateID.Idle);
+
+
+        
     }
 }

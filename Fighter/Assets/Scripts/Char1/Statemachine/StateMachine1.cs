@@ -48,7 +48,6 @@ public class StateMachine1 : MonoBehaviour {
 			currentState.Leave();
         currentState = states[stateID];
         currIdInt = (int)stateID;
-        Debug.Log(currIdInt);
         /** we stellen de nieuwe currentState in */
         currentState = states[stateID];
 		/** we geven de nieuwe state de mogelijkheid om zich zelf in te stellen */
