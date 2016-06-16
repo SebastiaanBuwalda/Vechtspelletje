@@ -29,6 +29,11 @@ public class IdleState1 : State1 {
         inState = true;
 		positionBasedFlip.enabled = true;
         Input.ResetInputAxes();
+
+        if (!anim.IsInTransition(0))
+        {
+            ReadInputs();
+        }
     }
 
     public override void Act()
@@ -118,5 +123,13 @@ public class IdleState1 : State1 {
             stateMachine.SetState(StateID.Jump);
         }
 			
+		else if (Input.GetKeyDown(KeyCode.DownArrow) && inState == true)
+		{
+			stateMachine.SetState (StateID.Crouch);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && grounded == true && inState == true)
+        {
+            stateMachine.SetState(StateID.Jump);
+        }
     }
 }

@@ -29,6 +29,7 @@ public class StandHeavyAttackState : State1 {
     public override void Enter()
     {
         inState = true;
+        //Input.ResetInputAxes();
         anim.SetInteger("AnimState", 4);
         shouldMove = true;
     }
@@ -80,7 +81,6 @@ public class StandHeavyAttackState : State1 {
     public override void Leave()
     {
         inState = false;
-        //Debug.Log("HEAVY ATTACK LEAVE");
     }
 
     //time untill player can move again
@@ -93,7 +93,6 @@ public class StandHeavyAttackState : State1 {
             {
                 stateMachine.SetState(StateID.Idle);
                 Input.ResetInputAxes();
-                //Debug.Log("<color=green> TO IDLE FROM HEAVY ATTACK </color>");
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {

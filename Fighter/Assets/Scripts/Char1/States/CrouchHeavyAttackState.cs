@@ -57,6 +57,14 @@ public class CrouchHeavyAttackState : State1 {
 				//Debug.Log("Go back to crouch");
 				stateMachine.SetState(StateID.Crouch);
 			}
+            if (!Input.anyKey)
+            {
+                stateMachine.SetState(StateID.Idle);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                stateMachine.SetState(StateID.Crouch);
+            }
         }
 		
 	}

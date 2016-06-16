@@ -12,8 +12,10 @@ public class WalkForwardState : State1 {
     [SerializeField] private Animator anim;
     [SerializeField] private Vector3 moveVector;
 	[SerializeField] private StateBasedInputs inputHandler;
+
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip walkingSound;
+
 
     public override void Enter()
     {
@@ -23,7 +25,9 @@ public class WalkForwardState : State1 {
     public override void Act()
     {
         transform.Translate(moveVector * Time.deltaTime);
-		audioSource.PlayOneShot(walkingSound);
+
+        if(!audioSource.isPlaying)
+		    audioSource.PlayOneShot(walkingSound);
     }
 
     public override void Reason()

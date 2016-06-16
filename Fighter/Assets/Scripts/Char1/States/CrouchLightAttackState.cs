@@ -6,31 +6,35 @@ using System.Collections;
  * this state is entered when the light attack button is pressed while in the crouch state.
  */
 
-public class CrouchLightAttackState : State1 {
+public class CrouchLightAttackState : State1
+{
 
-	[SerializeField] private StateMachine1 stateMachine;
-	[SerializeField] private Animator anim;
-	[SerializeField] private float lockTime;
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private float lockTime;
 
     private bool inState;
 
     public override void Enter()
     {
         inState = true;
-		anim.SetInteger("AnimState", 9);
+        anim.SetInteger("AnimState", 9);
     }
 
     public override void Act()
     {
-		
+
     }
 
     public override void Reason()
     {
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch punch"))
-			{
-				StartCoroutine(LightAtkLockTime());
-			}
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch punch"))
+        {
+            StartCoroutine(LightAtkLockTime());
+        }
     }
 
     public override void Leave()
@@ -38,22 +42,30 @@ public class CrouchLightAttackState : State1 {
         inState = false;
     }
 
-	IEnumerator LightAtkLockTime()
-	{
-		yield return new WaitForSeconds(lockTime);
-        if(inState)
+    IEnumerator LightAtkLockTime()
+    {
+        yield return new WaitForSeconds(lockTime);
+        if (inState)
         {
-			if (Input.GetAxis("Vertical")>=0)
+            if (Input.GetAxis("Vertical") >= 0)
             {
                 //Input.ResetInputAxes();
                 stateMachine.SetState(StateID.Idle);
             }
-			else if (Input.GetAxis("Vertical")<0)
+            else if (Input.GetAxis("Vertical") < 0)
             {
                 //Debug.Log("Go back to crouch");
-                stateMachine.SetState(StateID.Crouch);
+                if (!Input.anyKey)
+                {
+                    Input.ResetInputAxes();
+                    stateMachine.SetState(StateID.Idle);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    stateMachine.SetState(StateID.Crouch);
+                }
             }
+
         }
-		
-	}
+    }
 }

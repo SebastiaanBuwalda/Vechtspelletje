@@ -13,6 +13,9 @@ public class WalkBackwardState : State1 {
     [SerializeField] private Vector3 moveVector;
 	[SerializeField] private StateBasedInputs inputHandler;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip walkSound;
+
     public override void Enter()
     {
         anim.SetInteger("AnimState", 1);
@@ -21,10 +24,13 @@ public class WalkBackwardState : State1 {
     public override void Act()
     {
         transform.Translate(moveVector * Time.deltaTime);
+        if(!audioSource.isPlaying)
+            audioSource.PlayOneShot(walkSound);
     }
 
     public override void Reason()
     {
+        
         anim.SetInteger("AnimState", 1);
 		if (inputHandler.AskForLightAttack()) 
 		{
@@ -57,6 +63,6 @@ public class WalkBackwardState : State1 {
 
     public override void Leave()
     {
-        
+
     }
 }
