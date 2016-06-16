@@ -65,6 +65,7 @@ public class HeavySpecialState: State1
         if(inState)
         {
 			if (!Input.anyKey||Input.GetButton("B"))
+            if (!Input.anyKey)
             {
 
                 stateMachine.SetState(StateID.Idle);
