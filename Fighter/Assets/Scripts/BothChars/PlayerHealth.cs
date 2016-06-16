@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour, IHealth {
-    private int _playerHealth;
+    private float _playerHealth;
+    public float SetPlayerHealth
+    {
+        get { return _playerHealth; }
+    }
+
     [SerializeField]
     private AudioSource hitsound;
     private AudioClip clip1;

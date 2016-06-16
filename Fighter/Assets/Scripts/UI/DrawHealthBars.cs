@@ -33,7 +33,7 @@ public class DrawHealthBars : MonoBehaviour {
 
 	void Update() 
 	{
-		barDisplay = (23/100);
+		//barDisplay = (/);
 		//        barDisplay = MyControlScript.staticHealth;
 	}
 }
