@@ -20,7 +20,6 @@ public class WalkForwardState : State1 {
     public override void Enter()
     {
         anim.SetInteger("AnimState", 2);
-        Debug.Log("<color=green> WALK FORWARD ENTER </color>");
     }
 
     public override void Act()
@@ -28,7 +27,7 @@ public class WalkForwardState : State1 {
         transform.Translate(moveVector * Time.deltaTime);
 
         if(!audioSource.isPlaying)
-		    audioSource.PlayOneShot(walkingSound);n
+		    audioSource.PlayOneShot(walkingSound);
     }
 
     public override void Reason()

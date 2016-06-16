@@ -20,7 +20,6 @@ public class CrouchHeavyAttackState : State1 {
 	public override void Enter()
 	{
         inState = true;
-        Input.ResetInputAxes();
 		anim.SetInteger("AnimState", 10);
 		audioSource.PlayOneShot (sweepSound);
 	}

@@ -43,8 +43,7 @@ public class CrouchState1 : State1
     }
 
     public override void Leave()
-    {
-        Debug.Log("Leaving Crouch");
+    {   
     }
 
     void ReadInputs()
