@@ -27,7 +27,7 @@ public class StateBasedInputs : MonoBehaviour
 
 	void AskForDown()
 	{
-		if (Input.GetAxis ("Vertical2") < 0) 
+		if (Input.GetAxis ("Vertical") < 0) 
 		{
 			statePlace = 1;
 			StartCoroutine (inputReset (1));
@@ -37,12 +37,12 @@ public class StateBasedInputs : MonoBehaviour
 	void AskForForward()
 	{
 		if (!positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal2") > 0) {
+			if (Input.GetAxis ("Horizontal") > 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
 		} else if (positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal2") < 0) {
+			if (Input.GetAxis ("Horizontal") < 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
