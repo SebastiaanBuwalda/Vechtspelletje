@@ -2,30 +2,43 @@
 using System.Collections;
 
 /*
- * this class represents the crouch block. 
- * this state is entered when the character is in his crouchparry state and is not hit. the crouch parry state 
- * can be entered while the character is in the crouch state and the block button is pressed
+ * this class represents the crouching block state.
+ * this state is entered from the standing parry state is functions similarly to the crouch variant.
  */
 
-public class BlockCrouchState1 : State1 {
+public class BlockCrouchState1 : State1
+{
+
+    private bool blocking;
+    private StateMachine1 stateMachine;
 
     public override void Enter()
     {
-        base.Enter();
+        stateMachine = gameObject.GetComponent<StateMachine1>();
+        StartCoroutine(Block());
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Leave()
     {
-        base.Leave();
+
+    }
+    IEnumerator Block()
+    {
+        if (blocking == true)
+        {
+            yield return new WaitForEndOfFrame();
+
+        }
+        yield return new WaitForEndOfFrame();
+
+        stateMachine.SetState(StateID.Crouch);
     }
 }

@@ -2,28 +2,64 @@
 using System.Collections;
 
 /*
- * this state acts the same as the standing state exept that it can only be entered while pressing the block button while in the crouch state
+ * this class represents the first few frames of a block and is entered when the block button is pressed while in idle.
+ * from this state the character can enter any attack state or movement state without entering the blockdrop state
+ * if the character is not hit while this state is active the character will enter the standing block state
  */
 
-public class ParryCrouchState : State1 {
+public class ParryCrouchState : State1
+{
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private float parryWindow;
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    private bool inState;
+    private bool release;
+    private bool blocking;
+
+
 
     public override void Enter()
     {
-        base.Enter();
+        inState = true;
+        anim.SetInteger("AnimState", 20);
+        blocking = false;
+        parryWindow = 1f;
+        StartCoroutine(ParryBlockTime());
+
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            blocking = true;
+        }
+
     }
 
     public override void Leave()
     {
-        base.Leave();
+        inState = false;
+        Debug.Log("leave");
+    }
+
+    IEnumerator ParryBlockTime()
+    {
+        //succesfull parry
+
+        Debug.Log("parry");
+        yield return new WaitForSeconds(parryWindow);
+        //just blocking
+        Debug.Log("block");
+
+        yield return new WaitForEndOfFrame();
+        stateMachine.SetState(StateID.CrouchBlock);
     }
 }

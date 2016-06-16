@@ -92,5 +92,13 @@ public class JumpState : State1 {
         {
             stateMachine.SetState(StateID.AirHeavyAttack);
         }
+        else if(Input.GetKey(KeyCode.Space))
+        {
+            anim.SetInteger("AnimState", 5);
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("AnimState", 5);
+        }
     }
 }
