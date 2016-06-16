@@ -28,23 +28,23 @@ public class WalkBackwardState2 : State2 {
         {
             stateMachine.SetState(StateID2.LightSpecial);
         }
-        else if (Input.GetAxis("Horizontal") == 0)
+        else if (Input.GetAxis("Horizontal2") == 0)
         {
             stateMachine.SetState(StateID2.Idle);
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (Input.GetAxis("Horizontal2") > 0)
         {
             stateMachine.SetState(StateID2.WalkForward);
         }
-        else if (Input.GetButtonDown("A"))
+        else if (Input.GetButtonDown("A2"))
         {
             stateMachine.SetState(StateID2.StandLightAttack);
         }
-        else if (Input.GetButtonDown("B"))
+        else if (Input.GetButtonDown("B2"))
         {
             stateMachine.SetState(StateID2.StandHeavyAttack);
         }
-        else if (Input.GetButtonDown("X"))
+        else if (Input.GetButtonDown("X2"))
         {
             stateMachine.SetState(StateID2.JumpBackward);
         }

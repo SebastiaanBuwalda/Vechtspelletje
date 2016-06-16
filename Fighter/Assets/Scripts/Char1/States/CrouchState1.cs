@@ -63,7 +63,7 @@ public class CrouchState1 : State1 {
         {
             stateMachine.SetState(StateID.WalkForward);
         }
-        else if(Input.GetAxis("Horizontal")< -0.2f)
+		else if(Input.GetAxis("Horizontal")< -0.2f)
         {
             stateMachine.SetState(StateID.WalkBackward);
         }

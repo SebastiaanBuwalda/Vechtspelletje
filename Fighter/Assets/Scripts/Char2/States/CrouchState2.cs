@@ -8,7 +8,7 @@ public class CrouchState2 : State2 {
     [SerializeField]
     private Animator anim;
     [SerializeField]
-    private StateFreeInputHandler inputHandler;
+    private StateBasedInputs inputHandler;
 
 
     public override void Enter()
@@ -37,29 +37,33 @@ public class CrouchState2 : State2 {
     void ReadInputs()
     {
 
-        if (inputHandler.returnHadouken())
+		if (inputHandler.AskForLightAttack())
         {
             stateMachine.SetState(StateID2.LightSpecial);
         }
-        else if (Input.GetAxis("Vertical") == 0)
+		else if (inputHandler.AskForHeavyAttack())
+		{
+			stateMachine.SetState(StateID2.LightSpecial);
+		}
+        else if (Input.GetAxis("Vertical2") == 0)
         {
             Input.ResetInputAxes();
             stateMachine.SetState(StateID2.Idle);
         }
-        else if (Input.GetButtonDown("A"))
+        else if (Input.GetButtonDown("A2"))
         {
             stateMachine.SetState(StateID2.CrouchLightAttack);
         }
-        else if (Input.GetButtonDown("B"))
+        else if (Input.GetButtonDown("B2"))
         {
             //Input.ResetInputAxes();
             stateMachine.SetState(StateID2.CrouchHeavyAttack);
         }
-        else if (Input.GetAxis("Horizontal") > 0.2f)
+        else if (Input.GetAxis("Horizontal2") > 0.2f)
         {
             stateMachine.SetState(StateID2.WalkForward);
         }
-        else if (Input.GetAxis("Horizontal") < -0.2f)
+        else if (Input.GetAxis("Horizontal2") < -0.2f)
         {
             stateMachine.SetState(StateID2.WalkBackward);
         }

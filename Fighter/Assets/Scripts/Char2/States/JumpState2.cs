@@ -77,11 +77,11 @@ public class JumpState2 : State2 {
 
     void ReadInputs()
     {
-        if (Input.GetButtonDown("A"))
+        if (Input.GetButtonDown("A2"))
         {
             stateMachine.SetState(StateID2.AirLightAttack);
         }
-        else if (Input.GetButtonDown("B"))
+        else if (Input.GetButtonDown("B2"))
         {
             stateMachine.SetState(StateID2.AirHeavyAttack);
         }

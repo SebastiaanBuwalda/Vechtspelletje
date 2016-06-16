@@ -10,7 +10,7 @@ public class WalkForwardState2 : State2 {
     [SerializeField]
     private Vector3 moveVector;
     [SerializeField]
-    private StateFreeInputHandler inputHandler;
+	private StateBasedInputs inputHandler;
     [SerializeField]
     private AudioSource audioSource;
     [SerializeField]
@@ -30,27 +30,31 @@ public class WalkForwardState2 : State2 {
     public override void Reason()
     {
         anim.SetInteger("AnimState", 2);
-        if (inputHandler.returnHadouken())
+		if (inputHandler.AskForLightAttack())
         {
             stateMachine.SetState(StateID2.LightSpecial);
         }
-        else if ((Input.GetAxis("Horizontal") == 0))
+		else if (inputHandler.AskForHeavyAttack())
+		{
+			stateMachine.SetState(StateID2.HeavySpecial);
+		}
+        else if ((Input.GetAxis("Horizontal2") == 0))
         {
             stateMachine.SetState(StateID2.Idle);
         }
-        else if ((Input.GetAxis("Horizontal") < 0))
+        else if ((Input.GetAxis("Horizontal2") < 0))
         {
             stateMachine.SetState(StateID2.WalkBackward);
         }
-        else if (Input.GetButtonDown("A"))
+        else if (Input.GetButtonDown("A2"))
         {
             stateMachine.SetState(StateID2.StandLightAttack);
         }
-        else if (Input.GetButtonDown("B"))
+        else if (Input.GetButtonDown("B2"))
         {
             stateMachine.SetState(StateID2.StandHeavyAttack);
         }
-        else if (Input.GetButtonDown("X"))
+        else if (Input.GetButtonDown("X2"))
         {
             stateMachine.SetState(StateID2.JumpForward);
         }

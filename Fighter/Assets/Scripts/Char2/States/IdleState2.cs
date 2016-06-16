@@ -10,13 +10,14 @@ public class IdleState2 : State2 {
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
-    private StateFreeInputHandler inputHandler;
+	private StateBasedInputs inputHandler;
+	[SerializeField]
     private bool inState;
     private bool leftState = true;
     [SerializeField]
     private PositionBasedFlip positionBasedFlip;
 
-
+	[SerializeField]
     private bool grounded;
 
     public override void Enter()
@@ -81,38 +82,38 @@ public class IdleState2 : State2 {
 
     void ReadInputs()
     {
-        if (inputHandler.returnHadouken())
+		if (inputHandler.AskForLightAttack())
         {
             stateMachine.SetState(StateID2.LightSpecial);
         }
-        else if (inputHandler.returnHadoukenHeavy())
+		else if (inputHandler.AskForHeavyAttack())
         {
             stateMachine.SetState(StateID2.HeavySpecial);
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+		else if (Input.GetAxis("Horizontal2") < 0)
         {
             //walk left
             stateMachine.SetState(StateID2.WalkBackward);
 
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+		else if (Input.GetAxis("Horizontal2") > 0)
         {
             //walk right
             stateMachine.SetState(StateID2.WalkForward);
         }
-        else if (Input.GetButtonDown("A"))
+        else if (Input.GetButtonDown("A2"))
         {
             stateMachine.SetState(StateID2.StandLightAttack);
         }
-        else if (Input.GetButtonDown("B"))
+        else if (Input.GetButtonDown("B2"))
         {
             stateMachine.SetState(StateID2.StandHeavyAttack);
         }
-        else if (((Input.GetAxis("Vertical") < -0.1)) && inState == true)
+        else if (((Input.GetAxis("Vertical2") < -0.1)) && inState == true)
         {
             stateMachine.SetState(StateID2.Crouch);
         }
-        else if (Input.GetButtonDown("X") && grounded == true && inState == true)
+        else if (Input.GetButtonDown("X2") && grounded == true && inState == true)
         {
             Debug.Log("Jump from idle");
             stateMachine.SetState(StateID2.Jump);

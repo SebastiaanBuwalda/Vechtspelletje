@@ -27,7 +27,7 @@ public class StateBasedInputs : MonoBehaviour
 
 	void AskForDown()
 	{
-		if (Input.GetAxis ("Vertical") < 0) 
+		if (Input.GetAxis ("Vertical2") < 0) 
 		{
 			statePlace = 1;
 			StartCoroutine (inputReset (1));
@@ -37,12 +37,12 @@ public class StateBasedInputs : MonoBehaviour
 	void AskForForward()
 	{
 		if (!positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal") > 0) {
+			if (Input.GetAxis ("Horizontal2") > 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
 		} else if (positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal") < 0) {
+			if (Input.GetAxis ("Horizontal2") < 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
@@ -54,7 +54,6 @@ public class StateBasedInputs : MonoBehaviour
 	{
 		if (Input.GetButtonDown ("A")&&statePlace==2) {
 			return true;
-			print ("LightHadouken");
 			statePlace = 0;
 		} else
 			return false;
@@ -65,7 +64,6 @@ public class StateBasedInputs : MonoBehaviour
 		if (Input.GetButtonDown ("B")&&statePlace==2) 
 		{
 			return true;
-			print ("HeavyHadouken");
 			statePlace = 0;
 		} else
 			return false;

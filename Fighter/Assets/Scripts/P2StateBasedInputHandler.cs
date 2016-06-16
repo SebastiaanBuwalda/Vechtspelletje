@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class P2InputTest : MonoBehaviour {
+public class P2StateBasedInputHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,7 +10,6 @@ public class P2InputTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print(Input.GetAxis("Horizontal"));
 	
 	}
 }
