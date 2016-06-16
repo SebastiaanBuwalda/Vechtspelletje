@@ -20,11 +20,16 @@ public class SoftLandingState : State1 {
     [SerializeField]
     private Rigidbody rb;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
+
     public override void Enter()
     {
         anim.SetInteger("AnimState", 13);
         Input.ResetInputAxes();
         SpawnDust();
+
+        audioSource.PlayOneShot(jumpSound);
     }
 
     public override void Act()

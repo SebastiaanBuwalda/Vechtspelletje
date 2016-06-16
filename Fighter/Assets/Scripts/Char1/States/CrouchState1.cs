@@ -11,11 +11,16 @@ public class CrouchState1 : State1 {
 	[SerializeField] private StateMachine1 stateMachine;
 	[SerializeField] private Animator anim;
 	[SerializeField] private StateBasedInputs inputHandler;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip crouchSound;
 
 
     public override void Enter()
     {
 		anim.SetInteger("AnimState", 6);
+
+        if (!audioSource.isPlaying)
+            audioSource.PlayOneShot(crouchSound);
     }
 
     public override void Act()
