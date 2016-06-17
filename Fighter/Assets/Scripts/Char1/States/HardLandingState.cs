@@ -8,23 +8,31 @@ using System.Collections;
 
 public class HardLandingState : State1 {
 
+    [SerializeField]
+    private StateMachine1 stateMachine;
+    [SerializeField]
+    private Animator anim;
+
     public override void Enter()
     {
-        base.Enter();
+        anim.SetInteger("AnimState", 13);
     }
 
     public override void Act()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Reason()
     {
-        throw new System.NotImplementedException();
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Hard Landing"))
+        {
+            stateMachine.SetState(StateID.Getup);
+        }
     }
 
     public override void Leave()
     {
-        base.Leave();
+        
     }
 }

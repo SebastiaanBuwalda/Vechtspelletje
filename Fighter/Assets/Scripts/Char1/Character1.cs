@@ -169,9 +169,10 @@ public class Character1 : MonoBehaviour
             Ienemy = enemy.GetComponent<Icharacter>();
             Ienemy.OnGetHit(damage,gameObject);           
         }
+
+
         if (hittableStates.Contains(stateMachine.CurrIdInt))
         {
-            
                 Debug.Log("no parry");
 
                 //code for taking a hit
@@ -179,9 +180,6 @@ public class Character1 : MonoBehaviour
                 stunState.AtackLevel = level;
                 stateMachine.SetState(StateID.Hitstun);
                // IThisObjectHealth.ChangeHealth(damage);
-            
-
-            
         }
     }
 
