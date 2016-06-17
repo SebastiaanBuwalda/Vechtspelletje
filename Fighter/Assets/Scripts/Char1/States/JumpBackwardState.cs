@@ -44,7 +44,7 @@ public class JumpBackwardState : State1 {
         //clamp jump velocity
         if (rb.velocity.y > 12.7f)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, 12.7f, rb.velocity.x);
         }
 
         ReadInputs();
