@@ -24,9 +24,6 @@ public class LightSpecialState : State1
     private AudioClip fireballSound;
     [SerializeField]
     private PositionBasedFlip positionBasedFlip;
-    [SerializeField]
-    private GameObject hitBox;
-    
 
     private bool inState;
 
@@ -71,17 +68,6 @@ public class LightSpecialState : State1
                 temp.gameObject.transform.position = new Vector3(this.transform.position.x + 1, transform.position.y + 1.68f, this.transform.position.z);
             }
         }
-    }
-    void ActivateLightHitbox()
-    {
-        //this method is called via animation event
-        hitBox.SetActive(true);
-    }
-
-    void DeactivateLightHitbox()
-    {
-        //this method is called via animation event
-        hitBox.SetActive(false);
     }
 
     IEnumerator LightAtkLockTime()

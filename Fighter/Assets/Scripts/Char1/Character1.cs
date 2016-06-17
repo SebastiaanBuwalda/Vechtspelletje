@@ -182,18 +182,7 @@ public class Character1 : MonoBehaviour
                // IThisObjectHealth.ChangeHealth(damage);
         }
     }
-    //code to check if the player gets hit and to excecute the good hitstun
-    void OnCollisionEnter(Collision coll)
-    {
-        if (coll.transform.tag == "Heavy")
-        {
-            OnGetHit(2, coll.transform.gameObject, 2);
-        }
-        if (coll.transform.tag == "Light")
-        {
-            OnGetHit(1, coll.transform.gameObject, 1);
-        }
-    }
+
     void StartParry()
     {
       //  Debug.Log("parry");

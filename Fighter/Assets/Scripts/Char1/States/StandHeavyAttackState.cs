@@ -19,6 +19,7 @@ public class StandHeavyAttackState : State1 {
     [SerializeField]
     private GameObject hitBox;
     private bool inState;
+
     private bool shouldMove;
 
 	[SerializeField]
@@ -76,7 +77,6 @@ public class StandHeavyAttackState : State1 {
         //this method is called via animation event
         hitBox.SetActive(false);
     }
-    
 
     public override void Leave()
     {

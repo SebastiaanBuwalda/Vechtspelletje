@@ -45,18 +45,16 @@ public class StandLightAttackState : State1 {
     {
         inState = false;   
     }
-    public void StartHitboxLight()
+
+    void ActivateLightHitbox()
     {
+        //this method is called via animation event
         hitBox.SetActive(true);
     }
-    public void StopHitboxLight()
-    {
-        //  this method is called via animation event
-    }
 
-    public void DeactivateLightHitbox()
+    void DeactivateLightHitbox()
     {
-        //  this method is called via animation event
+        //this method is called via animation event
         hitBox.SetActive(false);
     }
 
