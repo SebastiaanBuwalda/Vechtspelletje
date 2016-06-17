@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour, IHealth {
     private float _playerHealth;
-    public float SetPlayerHealth
+    public float GetPlayerHealth
     {
         get { return _playerHealth; }
     }
