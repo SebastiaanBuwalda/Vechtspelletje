@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour, IHealth {
+
+   
     private float _playerHealth;
     public float GetPlayerHealth
     {
@@ -20,7 +22,9 @@ public class PlayerHealth : MonoBehaviour, IHealth {
         _playerHealth = 100;
     }
 
-
+    
+    
+   
     //code for testing purposes 
     
     public void ChangeHealth(int damage)
@@ -40,6 +44,7 @@ public class PlayerHealth : MonoBehaviour, IHealth {
   
     int getRandomClip(List<AudioClip> clips)
     {
+        
         return Random.Range(0, clips.Count);
     }
 }
