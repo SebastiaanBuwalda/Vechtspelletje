@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class P2StateBasedInputHandler : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class P2StateBasedInputHandler : StateBasedInputs 
+{
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

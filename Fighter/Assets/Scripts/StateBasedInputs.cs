@@ -11,6 +11,18 @@ public class StateBasedInputs : MonoBehaviour
 	[SerializeField]
 	private PositionBasedFlip positionBasedFlip;
 
+	[SerializeField]
+	private string verticalString = "Vertical";
+
+	[SerializeField] 
+	private string horizontalString = "Horizontal";
+
+	[SerializeField]
+	private string aString = "A";
+
+	[SerializeField]
+	private string bString = "B";
+
 	void Update()
 	{
 		if (statePlace == 0)
@@ -27,7 +39,7 @@ public class StateBasedInputs : MonoBehaviour
 
 	void AskForDown()
 	{
-		if (Input.GetAxis ("Vertical") < 0) 
+		if (Input.GetAxis (verticalString) < 0) 
 		{
 			statePlace = 1;
 			StartCoroutine (inputReset (1));
@@ -37,12 +49,12 @@ public class StateBasedInputs : MonoBehaviour
 	void AskForForward()
 	{
 		if (!positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal") > 0) {
+			if (Input.GetAxis (horizontalString) > 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
 		} else if (positionBasedFlip.FacingLeft) {
-			if (Input.GetAxis ("Horizontal") < 0) {
+			if (Input.GetAxis (horizontalString) < 0) {
 				statePlace = 2;
 				StartCoroutine (inputReset (2));
 			}
@@ -52,7 +64,7 @@ public class StateBasedInputs : MonoBehaviour
 
 	public bool AskForLightAttack()
 	{
-		if (Input.GetButtonDown ("A")&&statePlace==2) {
+		if (Input.GetButtonDown (aString)&&statePlace==2) {
 			return true;
 			statePlace = 0;
 		} else
@@ -61,7 +73,7 @@ public class StateBasedInputs : MonoBehaviour
 
 	public bool AskForHeavyAttack()
 	{
-		if (Input.GetButtonDown ("B")&&statePlace==2) 
+		if (Input.GetButtonDown (bString)&&statePlace==2) 
 		{
 			return true;
 			statePlace = 0;
