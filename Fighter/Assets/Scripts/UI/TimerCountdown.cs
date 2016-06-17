@@ -8,12 +8,7 @@ public class TimerCountdown : MonoBehaviour
 	[SerializeField]
 	private DrawTimer drawTimer;
 
-
-	void Start () 
-	{
-		StartCoroutine (Countdown ());
-	}
-
+	private bool activated = false;
 
 	IEnumerator Countdown()
 	{
@@ -27,6 +22,11 @@ public class TimerCountdown : MonoBehaviour
 
 	void LateUpdate()
 	{
+		if (PreMatchCountdown.canMove&&!activated) 
+		{
+			StartCoroutine (Countdown ());
+			activated = true;
+		}
 		if (timer <= 0) 
 		{
 			//Game over

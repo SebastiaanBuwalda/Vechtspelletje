@@ -33,7 +33,7 @@ public class IdleState2 : State2 {
 
     public override void Act()
     {
-        if (!anim.IsInTransition(0))
+		if (!anim.IsInTransition(0)&&PreMatchCountdown.canMove)
         {
             ReadInputs();
         }
