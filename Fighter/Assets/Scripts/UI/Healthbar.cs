@@ -22,7 +22,7 @@ public class Healthbar : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(pHealth.GetPlayerHealth * 0.01f);
+        //Debug.Log(pHealth.GetPlayerHealth * 0.01f);
         //takes a public health float variable that caps at 100 from another class and 
         //applies it to an image fillamount
         healthBar.fillAmount = pHealth.GetPlayerHealth * 0.01f;
