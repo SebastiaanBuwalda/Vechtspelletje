@@ -12,7 +12,7 @@ public class HitstunState : State1
     //delegate to loosly couple the clasess and still take damage
 
     //time variable to determine the time the player stays in the histstun state
-    private float stunTimer;
+    private float stunTimer = 0.01f;
     [SerializeField]
     private StateMachine1 stateMachine;
     private bool inState;
@@ -20,6 +20,7 @@ public class HitstunState : State1
     private Rigidbody rb;
     [SerializeField]
     private Animator anim;
+    private bool blocking;
 
     //make hitstun longer when the atack is heavy
     private int atackLevel;
@@ -31,13 +32,15 @@ public class HitstunState : State1
 
     public override void Enter()
     {
-        stunTimer = stunTimer / atackLevel;
+        //stunTimer = stunTimer * atackLevel;
+        stunTimer = stunTimer;
         rb = gameObject.GetComponent<Rigidbody>();
         stateMachine = gameObject.GetComponent<StateMachine1>();
-        
-        anim.SetInteger("AnimState", 10);
+
+        anim.SetInteger("AnimState", 22);
 
         StartCoroutine(StayTimer(stunTimer));
+        Debug.Log("Hitstun enter");
         Debug.Log(atackLevel);
         inState = true;
 
@@ -49,13 +52,17 @@ public class HitstunState : State1
     }
     public override void Reason()
     {
+        
 
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision);
-        OnGround = true;
+        if(collision.gameObject.tag == GameTags.floor)
+        {
+            OnGround = true;
+        }
+        
 
     }
     void OnCollisionExit(Collision collision)
@@ -74,7 +81,7 @@ public class HitstunState : State1
     {
         rb.isKinematic = true;
         Debug.Log("stunned");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.05f);
 
         //leave the hitstunstate to the state where the player should be either the idle state or the jump state
         rb.isKinematic = false;
