@@ -42,13 +42,13 @@ public class Character1 : MonoBehaviour
     private IHealth IThisObjectHealth;
     private Icharacter Ienemy;
 
-
+    private HitstunState stunState;
 
     private StateMachine1 stateMachine;
 
     void Start()
     {
-        
+        stunState = gameObject.GetComponent<HitstunState>();
         IThisObjectHealth = gameObject.GetComponent<IHealth>();
         //change to inspector later
         stateMachine = GetComponent<StateMachine1>();
@@ -56,21 +56,25 @@ public class Character1 : MonoBehaviour
         MakeStates();
 
         stateMachine.SetState(StateID.Idle);
+
     }
 
     void Update()
     {
         //code to test the onhit function
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetMouseButtonDown(0))
         {
-            OnGetHit(2, gameObject);
+            
+            OnGetHit(0,gameObject,1);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            OnGetHit(0, gameObject, 2);
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
             StartParry();
         }
-        if (stateMachine.CurrIdInt == (int)StateID.Crouch)
-            Debug.Log("crouch");
 
     }
 
@@ -156,9 +160,9 @@ public class Character1 : MonoBehaviour
 
     //code by Kappert
     //call this function when hit and if the player does not parry the atack
-    public void OnGetHit(int damage,GameObject enemy)
+    public void OnGetHit(int damage,GameObject enemy,int level)
     {
-
+        Debug.Log("gethit " + level);
         if (ParryStates.Contains(stateMachine.CurrIdInt))
         {
             //parry other player
@@ -168,15 +172,14 @@ public class Character1 : MonoBehaviour
         if (hittableStates.Contains(stateMachine.CurrIdInt))
         {
             
-          
-            if (!ParryAbleStates.Contains(stateMachine.CurrIdInt))
-            {
+                Debug.Log("no parry");
+
                 //code for taking a hit
 
+                stunState.AtackLevel = level;
                 stateMachine.SetState(StateID.Hitstun);
-                IThisObjectHealth.ChangeHealth(damage);
-                Debug.Log("no parry");
-            }
+               // IThisObjectHealth.ChangeHealth(damage);
+            
 
             
         }
