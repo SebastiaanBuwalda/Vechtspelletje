@@ -30,7 +30,7 @@ public class PositionBasedFlip : MonoBehaviour {
 	{
 		facingLeft = !facingLeft;
 		Vector3 theScale = transform.localScale;
-		theScale.z *= -1;
+		theScale.x *= -1;
 		transform.localScale = theScale;
 
 	}
