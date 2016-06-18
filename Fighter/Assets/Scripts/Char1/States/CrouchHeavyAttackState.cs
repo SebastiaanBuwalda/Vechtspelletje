@@ -14,6 +14,8 @@ public class CrouchHeavyAttackState : State1 {
 	[SerializeField] private float lockTime;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip sweepSound;
+    [SerializeField]
+    private GameObject hitBox;
 
     private bool inState;
 
@@ -40,7 +42,18 @@ public class CrouchHeavyAttackState : State1 {
 	public override void Leave()
 	{
         inState = false;
+        hitBox.SetActive(false);
 	}
+
+    public void ActivateHeavyCrouchHitbox()
+    {
+        hitBox.SetActive(true);
+    }
+
+    public void DeactivateHeavyCrouchHitbox()
+    {
+        hitBox.SetActive(false);
+    }
 
 	IEnumerator HeavyAtkLockTime()
 	{

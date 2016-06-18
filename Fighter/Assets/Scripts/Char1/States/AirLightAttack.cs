@@ -43,6 +43,7 @@ public class AirLightAttack : State1 {
     public override void Leave()
     {
         inState = false;
+        hitBox.SetActive(false);
     }
 
     void OnCollisionEnter(Collision coll)
@@ -55,11 +56,11 @@ public class AirLightAttack : State1 {
 
     void ActivateAirLightHitbox()
     {
-
+        hitBox.SetActive(true);
     }
 
     void DeactivateAirLightHitbox()
     {
-
+        hitBox.SetActive(false);
     }
 }

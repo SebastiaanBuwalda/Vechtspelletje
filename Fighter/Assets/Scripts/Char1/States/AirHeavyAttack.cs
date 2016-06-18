@@ -44,6 +44,7 @@ public class AirHeavyAttack : State1 {
     public override void Leave()
     {
         inState = false;
+        hitBox.SetActive(false);
     }
 
     void OnCollisionEnter(Collision coll)

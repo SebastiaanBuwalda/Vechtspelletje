@@ -16,7 +16,6 @@ public class StateMachine1 : MonoBehaviour {
     public int CurrIdInt
     {
         get { return currIdInt; }
-        set { currIdInt = value; }
     }
     /** een verwijzing naar de huidige staat waarin we verkeren */
     private State1 currentState;
@@ -28,7 +27,7 @@ public class StateMachine1 : MonoBehaviour {
 			currentState.Act();
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
 		
 	}
 

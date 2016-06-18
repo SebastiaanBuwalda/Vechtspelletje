@@ -11,22 +11,17 @@ public class ParryStandingState : State1 {
     [SerializeField]
     private Animator anim;
     [SerializeField]
-    private float parryWindow;
-    [SerializeField]
     private StateMachine1 stateMachine;
     private bool inState;
-    private bool release;
-    private bool blocking;
 
-
+    [SerializeField]
+    private float parryWindow;
 
     public override void Enter()
     {
         inState = true;
         anim.SetInteger("AnimState", 19);
-        parryWindow = 0.5f;
-        StartCoroutine(ParryBlockTime());
-
+        StartCoroutine(ParryWindow());
     }
 
     public override void Act()
@@ -36,22 +31,37 @@ public class ParryStandingState : State1 {
     public override void Reason()
     {
       
-      
     }
 
     public override void Leave()
     {
         inState = false;
     }
-    
-    IEnumerator ParryBlockTime()
+
+    IEnumerator ParryWindow()
     {
-        //succesfull parry
-
         yield return new WaitForSeconds(parryWindow);
-        //just blocking
-
-        yield return new WaitForEndOfFrame();
+        //parry window passed, go to blocking state if R button is still pressed, else go to idle through block drop animation
         stateMachine.SetState(StateID.StandBlock);
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        //ontriggerenter derives from monobehaviour and thus is always ran even when the statemachine is not in this state.
+        //as such i keep a boolean in most states that check whenever or not the state is activated. this is the inState boolean.
+        //here i prevent OnTriggerEnter from checking for collider tags when the state is not activated.
+        if(inState)
+        {
+            if (coll.tag != GameTags.heavyCrouchHitbox || coll.tag != GameTags.lightCrouchHitbox)
+            {
+                //parry succesfull, read inputs to see if an action is inputted
+                //take less damage?
+            }
+            else
+            {
+                //go to hitstun, attack bypassed parry because it was too low
+                //take damage by checking the tag you where hit by
+            }
+        }
     }
 }

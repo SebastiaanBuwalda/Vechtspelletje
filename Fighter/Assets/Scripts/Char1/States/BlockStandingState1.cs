@@ -8,52 +8,54 @@ using System.Collections;
 
 public class BlockStandingState1 : State1 {
 
-    private bool blocking;
+    [SerializeField]
     private StateMachine1 stateMachine;
-    
+    [SerializeField]
+    private Animator anim;
+    private bool inState;
+
     public override void Enter()
     {
-        stateMachine = gameObject.GetComponent<StateMachine1>();
-        blocking = true;
-        StartCoroutine(Block());
-
-
+        inState = true;
+        anim.SetInteger("AnimState", 19);
     }
 
     public override void Act()
     {
-        if (!Input.GetKey(KeyCode.U))
-        {
-            blocking = false;
-        }
+
     }
 
     public override void Reason()
     {
-      
+        ReadInputs();
     }
 
     public override void Leave()
     {
-
+        inState = false;
     }
-    IEnumerator Block()
+
+    void ReadInputs()
     {
-        while (blocking == true)
+        if(!Input.GetKey(KeyCode.R))
         {
-            //   Debug.Log("blocking");
-            yield return new WaitForEndOfFrame();
-            Debug.Log("stay blocking");
-
+            //leave blocking state, go back to idle
         }
+    }
 
-
-            yield return new WaitForEndOfFrame();
-            Debug.Log("leave blocking");
-
-            stateMachine.SetState(StateID.Idle);
-
-
-        
+    void OnTriggerEnter(Collider coll)
+    {
+        if(inState)
+        {
+            if(coll.tag != GameTags.heavyCrouchHitbox || coll.tag != GameTags.lightCrouchHitbox)
+            {
+                //successfully block the attack
+            }
+            else
+            {
+                //go to hitstun state, attack bypassed block because it was too low
+                //i thought it might be fun to bring the player into the falling state if he gets hit by the heavy crouch attack while blocking
+            }
+        }
     }
 }

@@ -58,6 +58,9 @@ public class WalkBackwardState : State1 {
 		else if(Input.GetButtonDown("X"))
         {
             stateMachine.SetState(StateID.JumpBackward);
+        }else if(Input.GetKey(KeyCode.R))
+        {
+            stateMachine.SetState(StateID.StandParry);
         }
     }
 

@@ -16,6 +16,9 @@ public class CrouchLightAttackState : State1
     [SerializeField]
     private float lockTime;
 
+    [SerializeField]
+    private GameObject hitBox;
+
     private bool inState;
 
     public override void Enter()
@@ -40,6 +43,19 @@ public class CrouchLightAttackState : State1
     public override void Leave()
     {
         inState = false;
+        hitBox.SetActive(false);
+    }
+
+    public void ActivateLightCrouchHitbox()
+    {
+        //this function is called via animation event
+        hitBox.SetActive(true);
+    }
+
+    public void DeactivateLightCrouchHitBox()
+    {
+        //this function is called via animation event
+        hitBox.SetActive(false);
     }
 
     IEnumerator LightAtkLockTime()

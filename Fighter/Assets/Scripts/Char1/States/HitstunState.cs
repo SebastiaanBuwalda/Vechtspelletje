@@ -67,9 +67,10 @@ public class HitstunState : State1
     }
     void OnCollisionExit(Collision collision)
     {
-        OnGround = false;
-        Debug.Log("exit");
-
+        if(inState)
+        {
+            OnGround = false;
+        }
     }
     public override void Leave()
     {

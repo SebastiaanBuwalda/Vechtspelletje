@@ -43,7 +43,8 @@ public class StandLightAttackState : State1 {
 
     public override void Leave()
     {
-        inState = false;   
+        inState = false;
+        hitBox.SetActive(false);
     }
 
     void ActivateLightHitbox()

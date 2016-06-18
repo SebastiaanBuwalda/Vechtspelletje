@@ -81,6 +81,7 @@ public class StandHeavyAttackState : State1 {
     public override void Leave()
     {
         inState = false;
+        hitBox.SetActive(false);
     }
 
     //time untill player can move again
