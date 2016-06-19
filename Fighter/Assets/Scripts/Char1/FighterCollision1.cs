@@ -44,6 +44,13 @@ public class FighterCollision1 : MonoBehaviour {
 
     void Update()
     {
+        //this class may or may not be neccesary. As of right now im not sure what to do
+        //with it, i guess i was thinking of a global character collision class that would
+        //receive calls from the states when the character was hit in that state and then
+        //work out if damage should be received and if the character should enter hitstun
+        //or falling or something like that.
+
+
         //check Character class StateID enum for state IDs
         //Debug.Log(stateMachine.CurrIdInt);
 
