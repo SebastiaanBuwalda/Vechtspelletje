@@ -39,7 +39,8 @@ public class BlockStandingState1 : State1 {
     {
         if(!Input.GetKey(KeyCode.R))
         {
-            //leave blocking state, go back to idle
+            //leave blocking state, go to Idle
+            stateMachine.SetState(StateID.Idle);
         }
     }
 

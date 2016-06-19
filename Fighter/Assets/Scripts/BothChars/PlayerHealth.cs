@@ -23,10 +23,10 @@ public class PlayerHealth : MonoBehaviour, IHealth {
 
     //code for testing purposes 
     
-    public void ChangeHealth(int damage)
+    public void ChangeHealth(float damage)
     {
         
-        hitsound.PlayOneShot(clipList[getRandomClip(clipList)]);
+        //hitsound.PlayOneShot(clipList[getRandomClip(clipList)]);
         //this functions should be called from a delegate
         _playerHealth -= damage;
         Debug.Log("current Health" + _playerHealth);

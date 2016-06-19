@@ -9,8 +9,11 @@ public class FighterCollision1 : MonoBehaviour {
 
     private List<int> noHitstunIdsList = new List<int>();
 
+    private PlayerHealth playerHealth;
+
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         FillIdList();
     }
 
@@ -28,6 +31,15 @@ public class FighterCollision1 : MonoBehaviour {
         noHitstunIdsList.Add(22);
         noHitstunIdsList.Add(25);
         noHitstunIdsList.Add(26);
+
+        for (int i = 0; i < noHitstunIdsList.Capacity; i++)
+        {
+            Debug.Log(noHitstunIdsList[i]);
+            if(stateMachine.CurrIdInt == i)
+            {
+                //dont take damage from any attacks you get hit by
+            }
+        }
     }
 
     void Update()
@@ -44,6 +56,12 @@ public class FighterCollision1 : MonoBehaviour {
         //hard landing      id      19
         //getup             id      22
         //check if statemachine is in any of these states
+    }
+
+    void OnMouseDown()
+    {
+        playerHealth.ChangeHealth(20);
+        stateMachine.SetState(StateID.Hitstun);
     }
 
     void OnTriggerEnter(Collider coll)

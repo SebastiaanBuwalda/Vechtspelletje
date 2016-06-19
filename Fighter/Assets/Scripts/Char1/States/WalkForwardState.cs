@@ -61,6 +61,10 @@ public class WalkForwardState : State1 {
         {
             stateMachine.SetState(StateID.JumpForward);
         }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            stateMachine.SetState(StateID.StandParry);
+        }
     }
 
     public override void Leave()

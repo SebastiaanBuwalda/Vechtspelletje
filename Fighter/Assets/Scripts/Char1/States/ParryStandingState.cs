@@ -56,12 +56,47 @@ public class ParryStandingState : State1 {
             {
                 //parry succesfull, read inputs to see if an action is inputted
                 //take less damage?
+
+                ReadInputs();
+                Debug.Log("Successfull Parry");
             }
             else
             {
                 //go to hitstun, attack bypassed parry because it was too low
                 //take damage by checking the tag you where hit by
+                stateMachine.SetState(StateID.Hitstun);
             }
+        }
+    }
+
+    void ReadInputs()
+    {
+        Input.ResetInputAxes();
+        Debug.Log(Input.inputString);
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            Debug.Log("rightarrow");
+            stateMachine.SetState(StateID.WalkForward);
+        }else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            Debug.Log("leftarrow");
+            stateMachine.SetState(StateID.WalkBackward);
+        }else if(Input.GetKey(KeyCode.X))
+        {
+            Debug.Log("X");
+            stateMachine.SetState(StateID.StandHeavyAttack);
+        }else if(Input.GetKey(KeyCode.Z))
+        {
+            Debug.Log("Z");
+            stateMachine.SetState(StateID.StandLightAttack);
+        }else if(Input.GetKey(KeyCode.R))
+        {
+            Debug.Log("R");
+            stateMachine.SetState(StateID.Idle);
+        }else if(!Input.anyKey)
+        {
+            Debug.Log("Nothing");
+            stateMachine.SetState(StateID.Idle);
         }
     }
 }

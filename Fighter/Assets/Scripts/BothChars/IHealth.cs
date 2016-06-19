@@ -3,7 +3,7 @@ using System.Collections;
 
 public interface IHealth{
 
-    void ChangeHealth(int damage);
+    void ChangeHealth(float damage);
     void OnDeath();
 
 }

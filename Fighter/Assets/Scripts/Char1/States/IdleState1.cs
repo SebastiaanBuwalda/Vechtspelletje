@@ -131,5 +131,9 @@ public class IdleState1 : State1 {
         {
             stateMachine.SetState(StateID.Jump);
         }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            stateMachine.SetState(StateID.StandParry);
+        }
     }
 }
