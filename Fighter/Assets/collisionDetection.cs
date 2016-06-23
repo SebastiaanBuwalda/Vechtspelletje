@@ -5,6 +5,6 @@ public class collisionDetection : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll)
     {
-        Debug.Log(coll.tag);
+        //Debug.Log(coll.tag);
     }
 }

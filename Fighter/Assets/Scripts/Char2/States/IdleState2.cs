@@ -25,6 +25,8 @@ public class IdleState2 : State2 {
         if (leftState == true)
             anim.SetInteger("AnimState", 0);
         leftState = false;
+        anim.SetInteger("AnimState", 0);
+        Debug.Log("Player2 Idle");
 
         inState = true;
         positionBasedFlip.enabled = true;
@@ -35,7 +37,7 @@ public class IdleState2 : State2 {
     {
 		if (!anim.IsInTransition(0)&&PreMatchCountdown.canMove)
         {
-            ReadInputs();
+            //ReadInputs();
         }
     }
 

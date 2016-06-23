@@ -34,7 +34,7 @@ public class FighterCollision1 : MonoBehaviour {
 
         for (int i = 0; i < noHitstunIdsList.Capacity; i++)
         {
-            Debug.Log(noHitstunIdsList[i]);
+            //Debug.Log(noHitstunIdsList[i]);
             if(stateMachine.CurrIdInt == i)
             {
                 //dont take damage from any attacks you get hit by

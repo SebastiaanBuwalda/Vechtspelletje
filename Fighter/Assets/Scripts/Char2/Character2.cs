@@ -36,6 +36,8 @@ public enum StateID2
 public class Character2 : MonoBehaviour {
 
     private StateMachine2 stateMachine;
+    [SerializeField]
+    private Animator anim;
 
     void Start()
     {
@@ -45,6 +47,9 @@ public class Character2 : MonoBehaviour {
         MakeStates();
 
         stateMachine.SetState(StateID2.Idle);
+
+        anim.SetInteger("AnimState", 0);
+        Debug.Log("done idle");
     }
 
     void MakeStates()

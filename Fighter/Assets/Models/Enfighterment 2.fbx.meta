@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 147e520f7603b8144a9bddc060060889
+timeCreated: 1466097174
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Axe
+    100002: Axe2
+    100004: Axe3
+    100006: Barrel
+    100008: Cave
+    100010: Crate
+    100012: Crate2
+    100014: Crate3
+    100016: //RootNode
+    100018: Ground
+    100020: Rug
+    100022: Torch_bowl
+    100024: Torch_stand
+    100026: WoodenBuilding
+    100028: Chain
+    100030: Chain_curve
+    100032: Dummy
+    100034: Torch_bowl 1
+    100036: Torch_stand2
+    100038: Dummy1
+    100040: Barrel2
+    100042: Barrel3
+    100044: Plank
+    100046: Potion1
+    400000: Axe
+    400002: Axe2
+    400004: Axe3
+    400006: Barrel
+    400008: Cave
+    400010: Crate
+    400012: Crate2
+    400014: Crate3
+    400016: //RootNode
+    400018: Ground
+    400020: Rug
+    400022: Torch_bowl
+    400024: Torch_stand
+    400026: WoodenBuilding
+    400028: Chain
+    400030: Chain_curve
+    400032: Dummy
+    400034: Torch_bowl 1
+    400036: Torch_stand2
+    400038: Dummy1
+    400040: Barrel2
+    400042: Barrel3
+    400044: Plank
+    400046: Potion1
+    2300000: Axe
+    2300002: Axe2
+    2300004: Axe3
+    2300006: Barrel
+    2300008: Cave
+    2300010: Crate
+    2300012: Crate2
+    2300014: Crate3
+    2300016: Ground
+    2300018: Rug
+    2300020: Torch_bowl
+    2300022: Torch_stand
+    2300024: WoodenBuilding
+    2300026: Chain
+    2300028: Chain_curve
+    2300030: Dummy
+    2300032: Torch_bowl 1
+    2300034: Torch_stand2
+    2300036: Dummy1
+    2300038: Barrel2
+    2300040: Barrel3
+    2300042: Plank
+    2300044: Potion1
+    3300000: Axe
+    3300002: Axe2
+    3300004: Axe3
+    3300006: Barrel
+    3300008: Cave
+    3300010: Crate
+    3300012: Crate2
+    3300014: Crate3
+    3300016: Ground
+    3300018: Rug
+    3300020: Torch_bowl
+    3300022: Torch_stand
+    3300024: WoodenBuilding
+    3300026: Chain
+    3300028: Chain_curve
+    3300030: Dummy
+    3300032: Torch_bowl 1
+    3300034: Torch_stand2
+    3300036: Dummy1
+    3300038: Barrel2
+    3300040: Barrel3
+    3300042: Plank
+    3300044: Potion1
+    4300000: Cave
+    4300002: WoodenBuilding
+    4300004: Ground
+    4300006: Torch_stand
+    4300008: Torch_bowl
+    4300010: Axe
+    4300012: Axe2
+    4300014: Axe3
+    4300016: Barrel
+    4300018: Crate
+    4300020: Crate2
+    4300022: Crate3
+    4300024: Rug
+    4300026: Torch_stand2
+    4300028: Torch_bowl
+    4300030: Chain
+    4300032: Chain_curve
+    4300034: Dummy
+    4300036: Dummy1
+    4300038: Barrel2
+    4300040: Barrel3
+    4300042: Plank
+    4300044: Potion1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
